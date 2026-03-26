@@ -1,1 +1,15 @@
-
+fastapi>=0.115.0
+uvicorn==0.31.0
+jinja2==3.1.4
+python-multipart==0.0.12
+# Database & Async (Vercel-Safe)
+psycopg2-binary==2.9.9
+sqlalchemy==2.0.35
+databases[postgresql]==0.9.0
+# Geospatial
+shapely==2.0.6
+pyproj==3.6.1
+geojson==3.1.0
+# Utilities
+pydantic[email]==2.9.2
+python-dotenv==1.0.1
