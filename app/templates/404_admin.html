@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Error | UNDP Crisis Response Damage Assessment</title>
+    <link rel="stylesheet" href="/static/css/undp-base.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; padding: 50px; background: #f4f4f4; }
+        .error-card { background: white; padding: 40px; border-top: 5px solid #D4D6D8; max-width: 600px; }
+        .code { font-family: monospace; background: #eee; padding: 5px; }
+    </style>
+</head>
+<body>
+    <div class="error-card">
+        <img src="/static/undp-logo-blue.svg" height="40">
+        <h2>Resource Not Found</h2>
+        <p>The requested administrative resource at <span class="code">{{ request.url.path }}</span> could not be located.</p>
+        <hr>
+        <p><strong>Next Steps:</strong></p>
+        <ul>
+          <!--
+            <li><a href="/admin/triage">Return to Verification Triage</a></li>
+            <li><a href="/admin/dashboard">Go to Command Center</a></li>
+        </ul>
+          -->
+        <button onclick="window.print()">Export Error Log</button>
+    </div>
+</body>
+</html>
