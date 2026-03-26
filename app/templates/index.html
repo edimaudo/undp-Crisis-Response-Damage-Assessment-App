@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}" dir="{{ 'rtl' if lang == 'ar' else 'ltr' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNDP Crisis Sentinel</title>
+    <link rel="stylesheet" href="/static/css/undp-base.css">
+    <style>
+        /* UNDP Design System Colors */
+        :root {
+            --undp-blue: #006EB5;
+            --undp-white: #FFFFFF;
+            --undp-light-gray: #F7F7F7;
+            --undp-black: #212121;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background-color: var(--undp-white);
+            color: var(--undp-black);
+        }
+
+        /* Hero Section - Following Julian Shapiro's Layout */
+        .hero {
+            padding: 100px 20px;
+            text-align: center;
+            background-color: var(--undp-light-gray);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.5;
+        }
+
+        /* Button Group */
+        .cta-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* UNDP Primary Button Style */
+        .btn-report {
+            background-color: var(--undp-blue);
+            color: white;
+            padding: 18px 36px;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+        }
+
+        /* UNDP Secondary/Outline Style */
+        .btn-map {
+            background-color: transparent;
+            color: var(--undp-blue);
+            padding: 18px 36px;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid var(--undp-blue);
+        }
+
+        .logo-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="logo-header">
+        <img src="/static/undp-logo-blue.svg" alt="UNDP Logo" height="80">
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Map Damage. <br>Accelerate Recovery.</h1>
+            <p>
+                In the first 48 hours of a crisis, your data is the most valuable tool for response. 
+                Identify damaged buildings to help UNDP partners deploy aid where it is needed most.
+            </p>
+
+            <div class="cta-group">
+                <a href="/report" class="btn-report">Submit Damage Report</a>
+                
+                <a href="/map" class="btn-map">View Community Map</a>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
