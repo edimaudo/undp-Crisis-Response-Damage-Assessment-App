@@ -24,7 +24,7 @@ The Objective: A highly user-friendly, open-source tool for communities to submi
 ## Project Structure
 
 ```
-/undp-damage-assessment
+/Crisis Response & Damage Assessment App
 ├── /app
 │   ├── /main.py              # FastAPI entry point & Routing
 │   ├── /models.py            # PostGIS database models (Infrastructure & Crisis types)
