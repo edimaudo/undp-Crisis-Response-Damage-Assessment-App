@@ -24,13 +24,13 @@ Crisis Response & Damage Assessment App
 ├── database.py          # PostgreSQL/PostGIS connection logic
 ├── crud.py              # Logic for Versioning & Redundancy detection
 ├── /templates            # Standard HTML Files (User & Admin)
-│   ├── landing.html      # 2-button entry point & Language toggle
-│   ├── report_form.html  # Capture wizard (Photo, Footprints, Core Questions)
+│   ├── index.html        # Landing page 
+│   ├── report_form.html  # Report damage (Photo, Footprints, Core Questions)
 │   ├── community_map.html# Public map with "My Report" highlighting
 │   ├── admin_triage.html # Staffer verification & data update page
 │   ├── dashboard.html    # Analytics & GIS Export interface
-│   ├── login.html        # Secure staffer portal
-│   └── 404_error.html    # Specialized User & Staffer error pages
+│   ├── login.html        # UNDP Staffer login
+│   └── 404_error.html    # Error page
 │   │
 │   ├── /static               # CSS, lightweight JS for offline queue, and Maps
 │   │   ├── /css              # RTL & LTR styling for UN languages
