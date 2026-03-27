@@ -21,10 +21,10 @@ async def landing_page(request: Request, lang: str = "en"):
 
 # Reporting Form 
 @app.get("/report", response_class=HTMLResponse)
-async def report_form(request: Request):
-    return templates.TemplateResponse("report_form.html", {"request": request})
+async def report_form(request: Request, lang: str = "en"):
+    return templates.TemplateResponse(request, "report_form.html", {"lang": lang})
 
 # Community Map 
 @app.get("/map", response_class=HTMLResponse)
-async def community_map(request: Request):
-    return templates.TemplateResponse("community_map.html", {"request": request})
+async def community_map(request: Request, lang: str = "en"):
+    return templates.TemplateResponse(request, "community_map.html.html", {"lang": lang})
