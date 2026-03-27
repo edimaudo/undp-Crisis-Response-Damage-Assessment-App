@@ -10,14 +10,9 @@ templates = Jinja2Templates(directory="templates")
 # Landing page
 @app.get("/", response_class=HTMLResponse)
 async def landing_page(request: Request, lang: str = "en"):
-    return templates.TemplateResponse(request, "index.html", {"lang": lang})#return templates.TemplateResponse(name="index.html", context={"request": request, "lang": lang})
+    return templates.TemplateResponse(request, "index.html", {"lang": lang})
 
-@app.get("/", response_class=HTMLResponse)
-async def landing_page(request: Request, lang: str = "en"):
-    return templates.TemplateResponse(
-        name="index.html", 
-        context={"request": request, "lang": lang}
-    )
+
 
 # Reporting Form 
 @app.get("/report", response_class=HTMLResponse)
