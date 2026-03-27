@@ -31,17 +31,14 @@ Crisis Response & Damage Assessment App
 │   ├── dashboard.html    # Analytics & GIS Export interface
 │   ├── login.html        # UNDP Staffer login
 │   └── 404_error.html    # Error page
-│   │
-│   ├── /static               # CSS, lightweight JS for offline queue, and Maps
-│   │   ├── /css              # RTL & LTR styling for UN languages
-│   │   ├── /js               # Local storage logic for "Upload Later"
-│   │   └── /maps             # Cached building footprint vector tiles
-│   │
-│   └── /services             # Core Logic Modules
-│       ├── translation.py    # Auto-translation for descriptions
-│       ├── anonymization.py  # PII/Metadata stripping logic
-│       └── export_engine.py  # GeoJSON/Shapefile generation
-│
+├── /static               # CSS, lightweight JS for offline queue, and Maps
+│   ├── /css              # RTL & LTR styling for UN languages
+│   ├── /js               # Local storage logic for "Upload Later"
+│   └── /maps             # Cached building footprint vector tiles
+├── /services             # Core Logic Modules
+│   ├── translation.py    # Auto-translation for descriptions
+│   ├── anonymization.py  # PII/Metadata stripping logic
+│   └── export_engine.py  # GeoJSON/Shapefile generation
 ├── /migrations               # Database versioning (Alembic)
 ├── docker-compose.yml        # Deployment for 48-hour rapid setup
 └── requirements.txt          # Python dependencies (FastAPI, SQLAlchemy, GeoPandas)
