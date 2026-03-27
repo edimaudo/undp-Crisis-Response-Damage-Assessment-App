@@ -25,21 +25,19 @@ The Objective: A highly user-friendly, open-source tool for communities to submi
 
 ```
 /Crisis Response & Damage Assessment App
-├── /app
-│   ├── /main.py              # FastAPI entry point & Routing
-│   ├── /models.py            # PostGIS database models (Infrastructure & Crisis types)
-│   ├── /schemas.py           # Data validation (Infrastructure, Damage Levels)
-│   ├── /database.py          # PostgreSQL/PostGIS connection logic
-│   ├── /crud.py              # Logic for Versioning & Redundancy detection
-│   │
-│   ├── /templates            # Standard HTML Files (User & Admin)
-│   │   ├── landing.html      # 2-button entry point & Language toggle
-│   │   ├── report_form.html  # Capture wizard (Photo, Footprints, Core Questions)
-│   │   ├── community_map.html# Public map with "My Report" highlighting
-│   │   ├── admin_triage.html # Staffer verification & data update page
-│   │   ├── dashboard.html    # Analytics & GIS Export interface
-│   │   ├── login.html        # Secure staffer portal
-│   │   └── 404_error.html    # Specialized User & Staffer error pages
+├── main.py              # FastAPI entry point & Routing
+├── models.py            # PostGIS database models (Infrastructure & Crisis types)
+├── schemas.py           # Data validation (Infrastructure, Damage Levels)
+├── database.py          # PostgreSQL/PostGIS connection logic
+├── crud.py              # Logic for Versioning & Redundancy detection
+├── templates            # Standard HTML Files (User & Admin)
+│   ├── landing.html      # 2-button entry point & Language toggle
+│   ├── report_form.html  # Capture wizard (Photo, Footprints, Core Questions)
+│   ├── community_map.html# Public map with "My Report" highlighting
+│   ├── admin_triage.html # Staffer verification & data update page
+│   ├── dashboard.html    # Analytics & GIS Export interface
+│   ├── login.html        # Secure staffer portal
+│   └── 404_error.html    # Specialized User & Staffer error pages
 │   │
 │   ├── /static               # CSS, lightweight JS for offline queue, and Maps
 │   │   ├── /css              # RTL & LTR styling for UN languages
