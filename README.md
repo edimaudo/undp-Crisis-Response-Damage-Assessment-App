@@ -34,6 +34,7 @@ Crisis Response & Damage Assessment App
 ├── /static               # CSS, lightweight JS for offline queue, and Maps
 │   ├── /css              # RTL & LTR styling for UN languages
 │   ├── /js               # Local storage logic for "Upload Later"
+│   ├── /images           # Store UNDP images
 │   └── /maps             # Cached building footprint vector tiles
 ├── /services             # Core Logic Modules
 │   ├── translation.py    # Auto-translation for descriptions
