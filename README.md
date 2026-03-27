@@ -23,7 +23,7 @@ Crisis Response & Damage Assessment App
 ├── schemas.py           # Data validation (Infrastructure, Damage Levels)
 ├── database.py          # PostgreSQL/PostGIS connection logic
 ├── crud.py              # Logic for Versioning & Redundancy detection
-├── templates            # Standard HTML Files (User & Admin)
+├── /templates            # Standard HTML Files (User & Admin)
 │   ├── landing.html      # 2-button entry point & Language toggle
 │   ├── report_form.html  # Capture wizard (Photo, Footprints, Core Questions)
 │   ├── community_map.html# Public map with "My Report" highlighting
