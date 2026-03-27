@@ -24,7 +24,7 @@ async def custom_404_handler(request: Request, __):
 # Landing page
 @app.get("/", response_class=HTMLResponse)
 async def landing_page(request: Request, lang: str = "en"):
-    return templates.TemplateResponse("landing.html", {"request": request, "lang": lang})
+    return templates.TemplateResponse("index.html", {"request": request, "lang": lang})
 
 # Reporting Form 
 @app.get("/report", response_class=HTMLResponse)
