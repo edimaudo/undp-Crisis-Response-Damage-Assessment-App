@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UNDP Crisis Response Damage Assessment</title>
     <style>
-        /* UNDP Design System Colors */
         :root {
             --undp-blue: #006EB5;
             --undp-white: #FFFFFF;
@@ -13,22 +12,35 @@
             --undp-black: #212121;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
+        body, html {
+            height: 100%;
             margin: 0;
+            font-family: 'Inter', sans-serif;
             background-color: var(--undp-white);
             color: var(--undp-black);
         }
 
-        /* Hero Section - Following Julian Shapiro's Layout */
+        .logo-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            background: white;
+        }
+
         .hero {
-            padding: 100px 20px;
+            /* Fixes the dead space */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 121px); 
+            padding: 40px 20px;
             text-align: center;
             background-color: var(--undp-light-gray);
+            box-sizing: border-box;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 8vw, 3.5rem); /* Responsive sizing */
             font-weight: 700;
             margin-bottom: 20px;
             line-height: 1.1;
@@ -41,7 +53,6 @@
             line-height: 1.5;
         }
 
-        /* Button Group */
         .cta-group {
             display: flex;
             gap: 15px;
@@ -49,7 +60,6 @@
             flex-wrap: wrap;
         }
 
-        /* UNDP Primary Button Style */
         .btn-report {
             background-color: var(--undp-blue);
             color: white;
@@ -58,10 +68,8 @@
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 1px;
-            border: none;
         }
 
-        /* UNDP Secondary/Outline Style */
         .btn-map {
             background-color: transparent;
             color: var(--undp-blue);
@@ -71,11 +79,6 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             border: 2px solid var(--undp-blue);
-        }
-
-        .logo-header {
-            padding: 20px;
-            border-bottom: 1px solid #eee;
         }
     </style>
 </head>
@@ -95,7 +98,6 @@
 
             <div class="cta-group">
                 <a href="/report" class="btn-report">Submit Damage Report</a>
-                
                 <a href="/map" class="btn-map">View Community Map</a>
             </div>
         </section>
