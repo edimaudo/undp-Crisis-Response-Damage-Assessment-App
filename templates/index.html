@@ -3,31 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UNDP Crisis Response Damage Assessment</title>
+    <!-- Updated Title for better Context -->
+    <title>Damage Assessment Portal | UNDP Crisis Response</title>
     <style>
         :root {
             --undp-blue: #006EB5;
+            --undp-blue-dark: #00558C; /* For better contrast on hover */
             --undp-white: #FFFFFF;
             --undp-light-gray: #F7F7F7;
             --undp-black: #212121;
         }
 
+        /* Skip link for keyboard accessibility */
+        .skip-link {
+            position: absolute;
+            left: -10000px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        .skip-link:focus {
+            position: static;
+            width: auto;
+            height: auto;
+            background: var(--undp-blue);
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+        }
+
         body, html {
             height: 100%;
             margin: 0;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             background-color: var(--undp-white);
             color: var(--undp-black);
+            line-height: 1.6; /* Improved readability */
         }
 
         .logo-header {
             padding: 20px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #ddd;
             background: white;
         }
 
         .hero {
-            /* Fixes the dead space */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -40,65 +61,82 @@
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 3.5rem); /* Responsive sizing */
+            font-size: clamp(2.2rem, 8vw, 3.5rem);
             font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.1;
+            margin-bottom: 24px;
+            line-height: 1.2;
+            color: var(--undp-black);
         }
 
         .hero p {
             font-size: 1.25rem;
-            max-width: 700px;
+            max-width: 65ch; /* Optimized line length for reading */
             margin: 0 auto 40px;
-            line-height: 1.5;
         }
 
         .cta-group {
             display: flex;
-            gap: 15px;
+            gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
+        }
+
+        /* Buttons with Focus States */
+        .btn-report, .btn-map {
+            padding: 18px 36px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.2s, outline 0.1s;
+            display: inline-block;
         }
 
         .btn-report {
             background-color: var(--undp-blue);
             color: white;
-            padding: 18px 36px;
-            font-weight: 600;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            border: 2px solid var(--undp-blue);
+        }
+
+        .btn-report:hover, .btn-report:focus {
+            background-color: var(--undp-blue-dark);
+            outline: 3px solid var(--undp-black);
+            outline-offset: 2px;
         }
 
         .btn-map {
             background-color: transparent;
             color: var(--undp-blue);
-            padding: 18px 36px;
-            font-weight: 600;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             border: 2px solid var(--undp-blue);
+        }
+
+        .btn-map:hover, .btn-map:focus {
+            background-color: var(--undp-blue);
+            color: white;
+            outline: 3px solid var(--undp-black);
+            outline-offset: 2px;
         }
     </style>
 </head>
 <body>
 
-    <header class="logo-header">
-        <img src="/static/images/undp-logo-blue.png" alt="UNDP Logo" height="80">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="logo-header" role="banner">
+        <img src="/static/images/undp-logo-blue.png" alt="UNDP Crisis Response Home" height="80">
     </header>
 
-    <main>
-        <section class="hero">
-            <h1>Map Damage. <br>Accelerate Recovery.</h1>
+    <main id="main-content">
+        <section class="hero" aria-labelledby="hero-title">
+            <h1 id="hero-title">Map Damage. <br>Accelerate Recovery.</h1>
             <p>
                 In the first 48 hours of a crisis, your data is the most valuable tool for response. 
                 Identify damaged buildings to help UNDP partners deploy aid where it is needed most.
             </p>
 
             <div class="cta-group">
-                <a href="/report" class="btn-report">Submit Damage Report</a>
-                <a href="/map" class="btn-map">View Community Map</a>
+                <a href="/report" class="btn-report" aria-label="Submit a new damage report">Submit Damage Report</a>
+                <a href="/map" class="btn-map" aria-label="View the interactive community damage map">View Community Map</a>
             </div>
         </section>
     </main>
