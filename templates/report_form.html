@@ -1,32 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ lang }}" dir="{{ 'rtl' if lang == 'ar' else 'ltr' }}">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit Damage Report | UNDP Damage Assessment</title>
-    <style>
-        :root { --undp-blue: #006EB5; --undp-light-gray: #F7F7F7; }
-        body { font-family: 'Inter', sans-serif; margin: 0; background: var(--undp-light-gray); }
-        .header { padding: 20px; background: white; border-bottom: 1px solid #eee; display: flex; align-items: center; justify-content: space-between; }
-        .container { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: calc(100vh - 121px); text-align: center; padding: 20px; }
-        h1 { color: var(--undp-blue); font-size: 2.5rem; }
-        .form-placeholder { background: white; padding: 60px; border-top: 4px solid var(--undp-blue); box-shadow: 0 4px 6px rgba(0,0,0,0.05); max-width: 500px; width: 100%; }
-        .btn-back { margin-top: 20px; color: #666; text-decoration: none; font-size: 0.9rem; }
-    </style>
-</head>
+    </head>
 <body>
-    <header class="header">
-        <img src="/static/images/undp-logo-blue.png" alt="UNDP Logo" height="60">
-        <a href="/" class="btn-back">← Back to Home</a>
-    </header>
-    <main class="container">
-        <div class="form-placeholder">
-            <h1>Damage Report</h1>
-            <p>The 5-step assessment form is being initialized...</p>
-            <div style="border: 2px dashed #ccc; padding: 40px; color: #999;">
-                [Form Module Placeholder]
-            </div>
-        </div>
+    <main id="main-content" class="container">
+        <h1>Damage Assessment Form</h1>
+        
+        <div id="form-status" aria-live="polite" class="sr-only">Step 1 of 3: Location</div>
+
+        <form action="/report" method="POST" id="damage-form">
+            <fieldset id="step-1" class="form-step">
+                <legend>Step 1: Incident Location</legend>
+                <p>Please provide the coordinates of the damage.</p>
+                <label for="lat">Latitude:</label>
+                <input type="number" step="any" name="lat" id="lat" required aria-required="true">
+                
+                <label for="lng">Longitude:</label>
+                <input type="number" step="any" name="lng" id="lng" required aria-required="true">
+                
+                <button type="button" onclick="goToStep(2)">Next: Assess Damage</button>
+            </fieldset>
+
+            <fieldset id="step-2" class="form-step" style="display:none;">
+                <legend>Step 2: Damage Severity</legend>
+                <p>Select the level of destruction observed.</p>
+                
+                <input type="radio" name="damage_level" id="low" value="minor" required>
+                <label for="low">Minor (Habitable)</label><br>
+                
+                <input type="radio" name="damage_level" id="high" value="destroyed">
+                <label for="high">Destroyed (Structural Failure)</label>
+                
+                <button type="button" onclick="goToStep(1)">Back</button>
+                <button type="button" onclick="goToStep(3)">Next: Contact Info</button>
+            </fieldset>
+
+            <fieldset id="step-3" class="form-step" style="display:none;">
+                <legend>Step 3: Finalize Report</legend>
+                <label for="reporter_name">Reporter Name (Optional):</label>
+                <input type="text" name="reporter_name" id="reporter_name">
+                
+                <button type="button" onclick="goToStep(2)">Back</button>
+                <button type="submit" class="btn-report">Submit Formal Report</button>
+            </fieldset>
+        </form>
     </main>
+
+    <script>
+        function goToStep(step) {
+            document.querySelectorAll('.form-step').forEach(s => s.style.display = 'none');
+            document.getElementById('step-' + step).style.display = 'block';
+            document.getElementById('form-status').innerText = "Step " + step + " of 3";
+        }
+    </script>
 </body>
 </html>
