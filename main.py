@@ -1,7 +1,12 @@
-from fastapi import FastAPI, Request, status
+from fastapi import FastAPI, Request, status, Depends, Form
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from sqlalchemy.ext.asyncio import AsyncSession
+from .database import get_db
+from . import crud, schemas
+from .services.anonymization import PrivacyService
+from .services.translation import TranslationService
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -16,6 +21,31 @@ async def landing_page(request: Request, lang: str = "en"):
 @app.get("/report", response_class=HTMLResponse)
 async def report_form(request: Request, lang: str = "en"):
     return templates.TemplateResponse(request, "report_form.html", {"lang": lang})
+
+@app.post("/report")
+async def handle_report(
+    request: Request,
+    lat: float = Form(...),
+    lng: float = Form(...),
+    damage_level: str = Form(...),
+    reporter_name: str = Form(None),
+    db: AsyncSession = Depends(get_db)
+):
+    # 1. Use Privacy Service to protect the reporter
+    safe_name = PrivacyService.anonymize_reporter(reporter_name)
+    
+    # 2. Prepare the data using our Schema
+    report_in = schemas.DamageReportCreate(
+        latitude=lat,
+        longitude=lng,
+        damage_level=damage_level,
+        reporter_name=safe_name
+    )
+    
+    # 3. Save via CRUD
+    await crud.create_damage_report(db, report_in)
+    
+    return {"status": "success", "message": "Report secured and filed."}
 
 # Community Map 
 @app.get("/map", response_class=HTMLResponse)
