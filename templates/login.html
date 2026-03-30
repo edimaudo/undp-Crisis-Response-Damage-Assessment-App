@@ -1,0 +1,26 @@
+<div class="auth-box">
+    <div class="logo-container">
+        <img src="/static/img/undp-logo.png" alt="UNDP Logo">
+    </div>
+    
+    <form action="/login" method="POST" class="login-form">
+        <h1>Staff Portal</h1>
+        <p>Authorized personnel only. Please sign in to access triage and GIS data.</p>
+
+        <div class="field">
+            <label for="email">Staff Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+        </div>
+
+        <div class="field">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required autocomplete="current-password">
+        </div>
+
+        <button type="submit" class="btn-login">Access Dashboard</button>
+        
+        <div class="auth-footer">
+            <a href="/forgot-password">Trouble signing in?</a>
+        </div>
+    </form>
+</div>
