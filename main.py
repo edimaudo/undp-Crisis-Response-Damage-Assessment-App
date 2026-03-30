@@ -18,13 +18,21 @@ async def landing_page(request: Request, lang: str = "en"):
     return templates.TemplateResponse(request, "index.html", {"lang": lang})
 
 # Reporting Form 
-@app.get("/report", response_class=HTMLResponse)
-async def report_form_get(request: Request, lang: str = "en"):
-    # Pass 'lang' to the template so the HTML tag can use it
+@app.get("/report")
+async def report_form_get(request: Request):
+    # Detect browser language (e.g., "es-MX,es;q=0.9")
+    browser_lang = request.headers.get("accept-language", "en")
+    
+    # Match against our "Big Six"
+    target_lang = "en"
+    for lang_code in ["ar", "fr", "es", "sw", "pt"]:
+        if lang_code in browser_lang.lower():
+            target_lang = lang_code
+            break
+
     return templates.TemplateResponse(
-        request, 
         "report_form.html", 
-        {"lang": lang}
+        {"request": request, "lang": target_lang}
     )
 
 @app.post("/report")
