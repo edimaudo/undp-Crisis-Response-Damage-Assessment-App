@@ -1,0 +1,29 @@
+<section class="triage-container">
+    <h2>Pending Verification</h2>
+    
+    <table class="triage-table">
+        <thead>
+            <tr>
+                <th>Photo</th>
+                <th>Location</th>
+                <th>Severity</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for report in reports %}
+            <tr>
+                <td><img src="{{ report.image_url }}" alt="Damage evidence" width="80"></td>
+                <td>{{ report.latitude }}, {{ report.longitude }}</td>
+                <td><span class="badge {{ report.damage_level }}">{{ report.damage_level }}</span></td>
+                <td><em>Unverified</em></td>
+                <td>
+                    <button class="btn-approve" onclick="verify({{ report.id }})">Verify</button>
+                    <button class="btn-reject" onclick="flag({{ report.id }})">Flag</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
