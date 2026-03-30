@@ -2,58 +2,51 @@
 <html lang="{{ lang }}" dir="{{ 'rtl' if lang == 'ar' else 'ltr' }}">
 <head>
     <meta charset="UTF-8">
-    <title>Submit Damage Report | UNDP Damage Assessment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Report | Crisis and Damage Response Assessment</title>
     </head>
-<body>
-    <main id="main-content" class="container">
-        <h1>Damage Assessment Form</h1>
+<form id="crisis-report-form" action="/report" method="POST" enctype="multipart/form-data">
+    
+    <section id="essentials">
+        <h2>Report Damage</h2>
         
-        <div id="form-status" aria-live="polite" class="sr-only">Step 1 of 3: Location</div>
+        <div class="input-row">
+            <button type="button" class="btn-gps" onclick="autoLocate()">Use My GPS</button>
+            <div id="map-mini" style="height: 150px;"></div>
+            <input type="hidden" name="lat" id="lat">
+            <input type="hidden" name="lng" id="lng">
+        </div>
 
-        <form action="/report" method="POST" id="damage-form">
-            <fieldset id="step-1" class="form-step">
-                <legend>Step 1: Incident Location</legend>
-                <p>Please provide the coordinates of the damage.</p>
-                <label for="lat">Latitude:</label>
-                <input type="number" step="any" name="lat" id="lat" required aria-required="true">
-                
-                <label for="lng">Longitude:</label>
-                <input type="number" step="any" name="lng" id="lng" required aria-required="true">
-                
-                <button type="button" onclick="goToStep(2)">Next: Assess Damage</button>
-            </fieldset>
+        <div class="input-row">
+            <label for="damage_photo" class="btn-camera-large">
+                Tap to Take Photo
+            </label>
+            <input type="file" id="damage_photo" name="damage_photo" accept="image/*" capture="environment" hidden onchange="preview(this)">
+            <img id="quick-preview" style="display:none; width: 100px; border-radius: 8px;">
+        </div>
 
-            <fieldset id="step-2" class="form-step" style="display:none;">
-                <legend>Step 2: Damage Severity</legend>
-                <p>Select the level of destruction observed.</p>
-                
-                <input type="radio" name="damage_level" id="low" value="minor" required>
-                <label for="low">Minor (Habitable)</label><br>
-                
-                <input type="radio" name="damage_level" id="high" value="destroyed">
-                <label for="high">Destroyed (Structural Failure)</label>
-                
-                <button type="button" onclick="goToStep(1)">Back</button>
-                <button type="button" onclick="goToStep(3)">Next: Contact Info</button>
-            </fieldset>
+        <fieldset class="severity-picker">
+            <legend class="sr-only">Severity</legend>
+            <input type="radio" name="level" id="low" value="minor" hidden>
+            <label for="low" class="chip">Minor</label>
 
-            <fieldset id="step-3" class="form-step" style="display:none;">
-                <legend>Step 3: Finalize Report</legend>
-                <label for="reporter_name">Reporter Name (Optional):</label>
-                <input type="text" name="reporter_name" id="reporter_name">
-                
-                <button type="button" onclick="goToStep(2)">Back</button>
-                <button type="submit" class="btn-report">Submit Formal Report</button>
-            </fieldset>
-        </form>
-    </main>
+            <input type="radio" name="level" id="mid" value="major" hidden>
+            <label for="mid" class="chip">Major</label>
 
-    <script>
-        function goToStep(step) {
-            document.querySelectorAll('.form-step').forEach(s => s.style.display = 'none');
-            document.getElementById('step-' + step).style.display = 'block';
-            document.getElementById('form-status').innerText = "Step " + step + " of 3";
-        }
-    </script>
-</body>
-</html>
+            <input type="radio" name="level" id="high" value="destroyed" hidden>
+            <label for="high" class="chip">Destroyed</label>
+        </fieldset>
+    </section>
+
+    <hr aria-hidden="true">
+
+    <details>
+        <summary class="btn-text">+ Add building/area details (Optional)</summary>
+        <div class="details-content">
+            <label for="notes">Notes (Building or Hazards)</label>
+            <textarea id="notes" name="notes" placeholder="e.g. Gas leak, road blocked..."></textarea>
+        </div>
+    </details>
+
+    <button type="submit" class="btn-submit-final">Send Report</button>
+</form>
