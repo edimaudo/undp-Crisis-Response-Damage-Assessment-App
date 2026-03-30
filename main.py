@@ -19,8 +19,13 @@ async def landing_page(request: Request, lang: str = "en"):
 
 # Reporting Form 
 @app.get("/report", response_class=HTMLResponse)
-async def report_form(request: Request, lang: str = "en"):
-    return templates.TemplateResponse(request, "report_form.html", {"lang": lang})
+async def report_form_get(request: Request, lang: str = "en"):
+    # Pass 'lang' to the template so the HTML tag can use it
+    return templates.TemplateResponse(
+        request, 
+        "report_form.html", 
+        {"lang": lang}
+    )
 
 @app.post("/report")
 async def handle_report(
