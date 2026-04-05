@@ -1,12 +1,17 @@
-from fastapi import FastAPI, Request, status, Depends, Form
+from fastapi import FastAPI, Request, Form, Depends, UploadFile, File, status
 from fastapi.responses import HTMLResponse
-from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.ext.asyncio import AsyncSession
-#from .database import get_db
-#from . import crud, schemas
+import shutil
+
+# Correct Architecture Imports
+from .database import get_db
+from app import crud, schemas
 from .services.anonymization import PrivacyService
-from .services.translation import TranslationService
+from app.services.translation import TranslationService
+from app.services.anonymization import AnonymizationService
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -22,18 +27,21 @@ async def landing_page(request: Request, lang: str = "en"):
 async def report_form_get(request: Request):
     # Detect browser language (e.g., "es-MX,es;q=0.9")
     browser_lang = request.headers.get("accept-language", "en")
-    
-    # Match against our "Big Six"
     target_lang = "en"
     for lang_code in ["ar", "fr", "es", "sw", "pt"]:
         if lang_code in browser_lang.lower():
             target_lang = lang_code
             break
-
+    # Fetch the correct UI strings
+    labels = TranslationService.get_ui_labels(target_lang)
     return templates.TemplateResponse(
-        "report_form.html", 
-        {"request": request, "lang": target_lang}
-    )
+            "report_form.html", 
+            {
+                "request": request, 
+                "lang": target_lang, 
+                "labels": labels
+            }
+        )
 
 @app.post("/report")
 async def handle_report(
@@ -56,7 +64,7 @@ async def handle_report(
     )
     
     # 3. Save via CRUD
-    await crud.create_damage_report(db, report_in)
+    #await crud.create_damage_report(db, report_in)
     
     return {"status": "success", "message": "Report secured and filed."}
 
