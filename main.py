@@ -1,17 +1,15 @@
 from fastapi import FastAPI, Request, Form, Depends, UploadFile, File, status
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-
-from fastapi.templating import Jinja2Templates
 from sqlalchemy.ext.asyncio import AsyncSession
 import shutil
 
 # Correct Architecture Imports
 #from .database import get_db
 #from app import crud, schemas
-from .services.anonymization import PrivacyService
-from app.services.translation import TranslationService
-from app.services.anonymization import AnonymizationService
+#from .services.anonymization import PrivacyService
+#from app.services.translation import TranslationService
+#from app.services.anonymization import AnonymizationService
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
