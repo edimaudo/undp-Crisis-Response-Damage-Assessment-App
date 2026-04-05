@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request, Form, Depends, UploadFile, File, status
+from fastapi import FastAPI, Request, Form, Depends, UploadFile, File, status, StaticFiles
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.ext.asyncio import AsyncSession
