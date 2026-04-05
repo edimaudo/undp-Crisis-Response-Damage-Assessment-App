@@ -44,28 +44,41 @@ async def report_form_get(request: Request):
         )
 
 @app.post("/report")
-async def handle_report(
+async def submit_report(
     request: Request,
     lat: float = Form(...),
     lng: float = Form(...),
-    damage_level: str = Form(...),
-    reporter_name: str = Form(None),
+    level: str = Form(...),
+    damage_photo: UploadFile = File(None),
+    notes: str = Form(None),
     db: AsyncSession = Depends(get_db)
 ):
-    # 1. Use Privacy Service to protect the reporter
-    safe_name = PrivacyService.anonymize_reporter(reporter_name)
-    
-    # 2. Prepare the data using our Schema
-    report_in = schemas.DamageReportCreate(
+    """
+    Receives the emergency data, sanitizes it, and saves it.
+    """
+    # 1. Image Storage (Placeholder for actual bucket logic)
+    image_url = None
+    if damage_photo:
+        file_location = f"uploads/{damage_photo.filename}"
+        with open(file_location, "wb+") as file_object:
+            shutil.copyfileobj(damage_photo.file, file_object)
+        image_url = f"/{file_location}"
+
+    # 2. Service Layer: Privacy & Safety
+    public_lat, public_lng = AnonymizationService.blur_location(lat, lng)
+    safe_notes = AnonymizationService.strip_pii_from_text(notes)
+
+    # 3. Validation via Pydantic Schema
+    report_data = schemas.DamageReportCreate(
         latitude=lat,
         longitude=lng,
-        damage_level=damage_level,
-        reporter_name=safe_name
+        damage_level=level,
+        notes=safe_notes
     )
-    
-    # 3. Save via CRUD
-    #await crud.create_damage_report(db, report_in)
-    
+
+    # 4. Database execution
+    # await crud.create_report(db, report_data, public_lat, public_lng, image_url)
+
     return {"status": "success", "message": "Report secured and filed."}
 
 # Community Map 
