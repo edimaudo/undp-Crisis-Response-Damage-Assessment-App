@@ -7,8 +7,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 import shutil
 
 # Correct Architecture Imports
-from .database import get_db
-from app import crud, schemas
+#from .database import get_db
+#from app import crud, schemas
 from .services.anonymization import PrivacyService
 from app.services.translation import TranslationService
 from app.services.anonymization import AnonymizationService
