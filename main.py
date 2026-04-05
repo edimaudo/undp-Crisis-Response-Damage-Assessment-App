@@ -3,8 +3,8 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.ext.asyncio import AsyncSession
-from .database import get_db
-from . import crud, schemas
+#from .database import get_db
+#from . import crud, schemas
 from .services.anonymization import PrivacyService
 from .services.translation import TranslationService
 
