@@ -23,24 +23,24 @@ Crisis Response & Damage Assessment App
 ├── schemas.py           # Data validation (Infrastructure, Damage Levels)
 ├── database.py          # PostgreSQL/PostGIS connection logic
 ├── crud.py              # Logic for Versioning & Redundancy detection
-├── /templates            # Standard HTML Files (User & Admin)
-│   ├── index.html        # Landing page 
-│   ├── report_form.html  # Report damage (Photo, Footprints, Core Questions)
-│   ├── community_map.html# Public map with "My Report" highlighting
-│   ├── admin_triage.html # Staffer verification & data update page
-│   ├── dashboard.html    # Analytics & GIS Export interface
-│   ├── login.html        # UNDP Staffer login
-│   └── 404_error.html    # Error page
-├── /static               # CSS, lightweight JS for offline queue, and Maps
-│   ├── /css              # RTL & LTR styling for UN languages
+├── /templates             
+│   ├── index.html         # Landing page 
+│   ├── report_form.html   # Report damage (Photo, Footprints, Core Questions)
+│   ├── community_map.html # Public map with "My Report" highlighting
+│   ├── admin_triage.html  # Staffer verification & data update page
+│   ├── dashboard.html     # Analytics & GIS Export interface
+│   ├── login.html         # UNDP Staffer login
+│   └── 404_error.html     # Error page
+├── /static               
+│   ├── /css              # 
 │   ├── /js               # Local storage logic for "Upload Later"
 │   ├── /images           # Store UNDP images
 │   └── /maps             # Cached building footprint vector tiles
-├── /services             # Core Logic Modules
+├── /services             
 │   ├── translation.py    # Auto-translation for descriptions
 │   ├── anonymization.py  # PII/Metadata stripping logic
 │   └── export_engine.py  # GeoJSON/Shapefile generation
-├── /migrations               # Database versioning (Alembic)
-├── docker-compose.yml        # Deployment for 48-hour rapid setup
-└── requirements.txt          # Python dependencies (FastAPI, SQLAlchemy, GeoPandas)
+├── /migrations           # Database versioning (Alembic)
+├── docker-compose.yml    # Deployment
+└── requirements.txt      # Python dependencies 
 ```
