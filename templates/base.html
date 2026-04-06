@@ -125,14 +125,14 @@
                 <button class="btn-tool" onclick="setFont('large')" title="Large Text">A+</button>
             </div>
 
-            <select class="lang-select" onchange="window.location.href='?lang=' + this.value" aria-label="Language">
-                <option value="en" {{ 'selected' if lang == 'en' }}>EN</option>
-                <option value="ar" {{ 'selected' if lang == 'ar' }}>AR</option>
-                <option value="fr" {{ 'selected' if lang == 'fr' }}>FR</option>
-                <option value="es" {{ 'selected' if lang == 'es' }}>ES</option>
-                <option value="sw" {{ 'selected' if lang == 'sw' }}>SW</option>
-                <option value="pt" {{ 'selected' if lang == 'pt' }}>PT</option>
-            </select>
+<select class="lang-select" onchange="changeLanguage(this.value)" aria-label="Language">
+    <option value="en" {{ 'selected' if lang == 'en' }}>EN</option>
+    <option value="ar" {{ 'selected' if lang == 'ar' }}>AR</option>
+    <option value="fr" {{ 'selected' if lang == 'fr' }}>FR</option>
+    <option value="es" {{ 'selected' if lang == 'es' }}>ES</option>
+    <option value="sw" {{ 'selected' if lang == 'sw' }}>SW</option>
+    <option value="pt" {{ 'selected' if lang == 'pt' }}>PT</option>
+</select>
         </nav>
     </header>
 
@@ -162,6 +162,15 @@
             if(localStorage.getItem('theme')) document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'));
             if(localStorage.getItem('font-size')) document.documentElement.setAttribute('data-size', localStorage.getItem('font-size'));
         }
+
+         function changeLanguage(newLang) {
+    // 1. Get current URL
+    let url = new URL(window.location.href);
+    // 2. Update the 'lang' parameter
+    url.searchParams.set('lang', newLang);
+    // 3. Reload the page with the new language
+    window.location.href = url.toString();
+} 
     </script>
 </body>
 </html>
