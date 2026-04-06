@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="{{ lang | default('en') }}" 
+      dir="{{ 'rtl' if lang == 'ar' else 'ltr' }}" 
+      data-theme="light" 
+      data-size="medium">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}UNDP Crisis Response Damage Assessment{% endblock %}</title>
+    
+    <style>
+        /* CSS Variables for 3 Key Features */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --undp-blue: #006eb5;
+            --ui-bg: #f8f9fa;
+            --font-multiplier: 1rem;
+        }
+
+        /* Feature 1: Dark Mode */
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #f5f5f5;
+            --ui-bg: #222222;
+        }
+
+        /* Feature 2: Font Scaling (WCAG 2.1) */
+        [data-size="small"]  { --font-multiplier: 0.85rem; }
+        [data-size="medium"] { --font-multiplier: 1rem; }
+        [data-size="large"]  { --font-multiplier: 1.25rem; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-size: var(--font-multiplier);
+            font-family: system-ui, -apple-system, sans-serif;
+            margin: 0;
+            transition: background 0.3s ease, font-size 0.2s ease;
+        }
+
+        /* The Branded Header */
+        .logo-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+        }
+        [data-theme="dark"] .logo-header { border-color: #333; }
+
+        /* Feature 3: The Accessibility & Language Toolbar */
+        .a11y-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background: var(--ui-bg);
+            border-bottom: 2px solid var(--undp-blue);
+        }
+
+        .tool-group { display: flex; gap: 8px; }
+        .btn-tool { 
+            padding: 10px 15px; 
+            background: var(--bg-color); 
+            color: var(--text-color);
+            border: 1px solid #999; 
+            border-radius: 4px; 
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        main { padding: 1.5rem; max-width: 800px; margin: 0 auto; min-height: 70vh; }
+        footer { padding: 2rem; border-top: 1px solid #eee; text-align: center; font-size: 0.9rem; opacity: 0.8; }
+    </style>
+</head>
+<body>
+
+    <header class="logo-header" role="banner">
+        <img src="/static/images/undp-logo-blue.png" alt="UNDP Crisis Response Home" height="80">
+    </header>
+
+    <nav class="a11y-toolbar" aria-label="Accessibility and Language Settings">
+        <div class="tool-group">
+            <button class="btn-tool" onclick="toggleTheme()" title="Toggle Dark Mode">🌓</button>
+            <button class="btn-tool" onclick="setFont('large')" title="Increase Text Size">A+</button>
+            <button class="btn-tool" onclick="setFont('medium')" title="Reset Text Size">A</button>
+        </div>
+        
+        <select class="btn-tool" onchange="window.location.href='?lang=' + this.value" aria-label="Select Language">
+            <option value="en" {{ 'selected' if lang == 'en' }}>English</option>
+            <option value="ar" {{ 'selected' if lang == 'ar' }}>العربية</option>
+            <option value="fr" {{ 'selected' if lang == 'fr' }}>Français</option>
+            <option value="es" {{ 'selected' if lang == 'es' }}>Español</option>
+            <option value="sw" {{ 'selected' if lang == 'sw' }}>Kiswahili</option>
+            <option value="pt" {{ 'selected' if lang == 'pt' }}>Português</option>
+        </select>
+    </nav>
+
+    <main id="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2026 United Nations Development Programme</p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const isDark = html.getAttribute('data-theme') === 'dark';
+            html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+        }
+
+        function setFont(size) {
+            document.documentElement.setAttribute('data-size', size);
+        }
+    </script>
+</body>
+</html>
