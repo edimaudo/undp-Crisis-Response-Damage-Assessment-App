@@ -8,9 +8,9 @@ import shutil
 # Correct Architecture Imports
 #from .database import get_db
 #from . import crud, schemas
-from .services.anonymization import PrivacyService
-from .services.translation import TranslationService
-from .services.anonymization import AnonymizationService
+#from .services.anonymization import PrivacyService
+#from .services.translation import TranslationService
+#from .services.anonymization import AnonymizationService
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -22,25 +22,25 @@ async def landing_page(request: Request, lang: str = "en"):
     return templates.TemplateResponse(request, "index.html", {"lang": lang})
 
 # Reporting Form 
-@app.get("/report")
-async def report_form_get(request: Request):
-    # Detect browser language (e.g., "es-MX,es;q=0.9")
-    browser_lang = request.headers.get("accept-language", "en")
-    target_lang = "en"
-    for lang_code in ["ar", "fr", "es", "sw", "pt"]:
-        if lang_code in browser_lang.lower():
-            target_lang = lang_code
-            break
-    # Fetch the correct UI strings
-    labels = TranslationService.get_ui_labels(target_lang)
-    return templates.TemplateResponse(
-            "report_form.html", 
-            {
-                "request": request, 
-                "lang": target_lang, 
-                "labels": labels
-            }
-        )
+# @app.get("/report")
+# async def report_form_get(request: Request):
+#     # Detect browser language (e.g., "es-MX,es;q=0.9")
+#     browser_lang = request.headers.get("accept-language", "en")
+#     target_lang = "en"
+#     for lang_code in ["ar", "fr", "es", "sw", "pt"]:
+#         if lang_code in browser_lang.lower():
+#             target_lang = lang_code
+#             break
+#     # Fetch the correct UI strings
+#     labels = TranslationService.get_ui_labels(target_lang)
+#     return templates.TemplateResponse(
+#             "report_form.html", 
+#             {
+#                 "request": request, 
+#                 "lang": target_lang, 
+#                 "labels": labels
+#             }
+#         )
 
 # @app.post("/report")
 # async def submit_report(
@@ -81,9 +81,9 @@ async def report_form_get(request: Request):
 #     return {"status": "success", "message": "Report secured and filed."}
 
 # Community Map 
-@app.get("/map", response_class=HTMLResponse)
-async def community_map(request: Request, lang: str = "en"):
-    return templates.TemplateResponse(request, "community_map.html", {"lang": lang})
+# @app.get("/map", response_class=HTMLResponse)
+# async def community_map(request: Request, lang: str = "en"):
+#     return templates.TemplateResponse(request, "community_map.html", {"lang": lang})
 
 # 404 
 @app.exception_handler(404)
