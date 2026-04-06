@@ -28,11 +28,11 @@ async def landing_page(request: Request, lang: str = "en"):
     
     # 2. Pass BOTH 'lang' and 'labels' to the template
     return templates.TemplateResponse(
-        "index.html", 
-        {
-            "request": request, 
-            "lang": lang,   # Used by base.html for dir="rtl"
-            "labels": labels # Used by landing.html for text content
+        request=request,         # Name your arguments for safety
+        name="index.html", 
+        context={
+            "lang": lang, 
+            "labels": labels
         }
     )
 
