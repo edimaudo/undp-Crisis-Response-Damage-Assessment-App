@@ -1,145 +1,91 @@
-<!DOCTYPE html>
-<html lang="{{ lang }}" dir="{{ 'rtl' if lang == 'ar' else 'ltr' }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Updated Title for better Context -->
-    <title>Damage Assessment Portal | UNDP Crisis Response</title>
-    <style>
-        :root {
-            --undp-blue: #006EB5;
-            --undp-blue-dark: #00558C; /* For better contrast on hover */
-            --undp-white: #FFFFFF;
-            --undp-light-gray: #F7F7F7;
-            --undp-black: #212121;
-        }
+{% extends "base.html" %}
 
-        /* Skip link for keyboard accessibility */
-        .skip-link {
-            position: absolute;
-            left: -10000px;
-            top: auto;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-        }
-        .skip-link:focus {
-            position: static;
-            width: auto;
-            height: auto;
-            background: var(--undp-blue);
-            color: white;
-            padding: 10px;
-            text-decoration: none;
-        }
+{% block title %}UNDP Crisis Response Damage Assessment Portal{% endblock %}
 
-        body, html {
-            height: 100%;
-            margin: 0;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background-color: var(--undp-white);
-            color: var(--undp-black);
-            line-height: 1.6; /* Improved readability */
-        }
+{% block content %}
+<style>
+    /* Specific styles only for the Hero section */
+    .hero {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 70vh; 
+        padding: 40px 20px;
+        text-align: center;
+        box-sizing: border-box;
+    }
 
-        .logo-header {
-            padding: 20px;
-            border-bottom: 1px solid #ddd;
-            background: white;
-        }
+    .hero h1 {
+        font-size: clamp(2.2rem, 8vw, 3.5rem);
+        font-weight: 700;
+        margin-bottom: 24px;
+        line-height: 1.2;
+    }
 
-        .hero {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: calc(100vh - 121px); 
-            padding: 40px 20px;
-            text-align: center;
-            background-color: var(--undp-light-gray);
-            box-sizing: border-box;
-        }
+    .hero p {
+        font-size: 1.25rem;
+        max-width: 65ch; 
+        margin: 0 auto 40px;
+    }
 
-        .hero h1 {
-            font-size: clamp(2.2rem, 8vw, 3.5rem);
-            font-weight: 700;
-            margin-bottom: 24px;
-            line-height: 1.2;
-            color: var(--undp-black);
-        }
+    .cta-group {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 
-        .hero p {
-            font-size: 1.25rem;
-            max-width: 65ch; /* Optimized line length for reading */
-            margin: 0 auto 40px;
-        }
+    /* Primary Action Button */
+    .btn-report {
+        background-color: var(--undp-blue);
+        color: white;
+        padding: 18px 36px;
+        font-weight: 700;
+        text-decoration: none;
+        text-transform: uppercase;
+        border: 2px solid var(--undp-blue);
+        transition: transform 0.2s;
+    }
 
-        .cta-group {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+    .btn-report:hover, .btn-report:focus {
+        filter: brightness(90%);
+        transform: scale(1.02);
+    }
 
-        /* Buttons with Focus States */
-        .btn-report, .btn-map {
-            padding: 18px 36px;
-            font-weight: 700;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: background-color 0.2s, outline 0.1s;
-            display: inline-block;
-        }
+    /* Secondary Action Button */
+    .btn-map {
+        background-color: transparent;
+        color: var(--undp-blue);
+        padding: 18px 36px;
+        font-weight: 700;
+        text-decoration: none;
+        text-transform: uppercase;
+        border: 2px solid var(--undp-blue);
+    }
 
-        .btn-report {
-            background-color: var(--undp-blue);
-            color: white;
-            border: 2px solid var(--undp-blue);
-        }
+    .btn-map:hover, .btn-map:focus {
+        background-color: var(--undp-blue);
+        color: white;
+    }
 
-        .btn-report:hover, .btn-report:focus {
-            background-color: var(--undp-blue-dark);
-            outline: 3px solid var(--undp-black);
-            outline-offset: 2px;
-        }
+    /* Accessibility: Ensure buttons adapt to Dark Mode via CSS Variables if needed */
+    [data-theme="dark"] .btn-map {
+        color: #89cff0;
+        border-color: #89cff0;
+    }
+</style>
 
-        .btn-map {
-            background-color: transparent;
-            color: var(--undp-blue);
-            border: 2px solid var(--undp-blue);
-        }
+<section class="hero" aria-labelledby="hero-title">
+    <h1 id="hero-title">Map Damage. <br>Accelerate Recovery.</h1>
+    <p>
+        In the first 48 hours of a crisis, your data is the most valuable tool for response. 
+        Identify damaged buildings to help UNDP partners deploy aid where it is needed most.
+    </p>
 
-        .btn-map:hover, .btn-map:focus {
-            background-color: var(--undp-blue);
-            color: white;
-            outline: 3px solid var(--undp-black);
-            outline-offset: 2px;
-        }
-    </style>
-</head>
-<body>
-
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-
-    <header class="logo-header" role="banner">
-        <img src="/static/images/undp-logo-blue.png" alt="UNDP Crisis Response Home" height="80">
-    </header>
-
-    <main id="main-content">
-        <section class="hero" aria-labelledby="hero-title">
-            <h1 id="hero-title">Map Damage. <br>Accelerate Recovery.</h1>
-            <p>
-                In the first 48 hours of a crisis, your data is the most valuable tool for response. 
-                Identify damaged buildings to help UNDP partners deploy aid where it is needed most.
-            </p>
-
-            <div class="cta-group">
-                <a href="/report" class="btn-report" aria-label="Submit a new damage report">Submit Damage Report</a>
-                <a href="/map" class="btn-map" aria-label="View the interactive community damage map">View Community Map</a>
-            </div>
-        </section>
-    </main>
-
-</body>
-</html>
+    <div class="cta-group">
+        <a href="/report" class="btn-report" aria-label="Submit a new damage report">Submit Damage Report</a>
+        <a href="/map" class="btn-map" aria-label="View the interactive community damage map">View Community Map</a>
+    </div>
+</section>
+{% endblock %}
