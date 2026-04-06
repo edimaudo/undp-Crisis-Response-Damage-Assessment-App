@@ -17,9 +17,24 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 # Landing page
+# @app.get("/", response_class=HTMLResponse)
+# async def landing_page(request: Request, lang: str = "en"):
+#     return templates.TemplateResponse(request, "index.html", {"lang": lang})
+
 @app.get("/", response_class=HTMLResponse)
 async def landing_page(request: Request, lang: str = "en"):
-    return templates.TemplateResponse(request, "index.html", {"lang": lang})
+    # 1. Get the dictionary for the requested language
+    labels = TranslationService.get_ui_labels(lang)
+    
+    # 2. Pass BOTH 'lang' and 'labels' to the template
+    return templates.TemplateResponse(
+        "index.html", 
+        {
+            "request": request, 
+            "lang": lang,   # Used by base.html for dir="rtl"
+            "labels": labels # Used by landing.html for text content
+        }
+    )
 
 # Reporting Form 
 # @app.get("/report")
