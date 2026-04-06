@@ -76,10 +76,11 @@
     }
 </style>
 
-<section class="hero" aria-labelledby="hero-title">
+
 
 <!--
-    <h1 id="hero-title">Map Damage. <br>Accelerate Recovery.</h1>
+<section class="hero" aria-labelledby="hero-title">
+<h1 id="hero-title">Map Damage. <br>Accelerate Recovery.</h1>
     <p>
         In the first 48 hours of a crisis, your data is the most valuable tool for response. 
         Identify damaged buildings to help UNDP partners deploy aid where it is needed most.
@@ -88,8 +89,8 @@
         <a href="/report" class="btn-report" aria-label="Submit a new damage report">Submit Damage Report</a>
         <a href="/map" class="btn-map" aria-label="View the interactive community damage map">View Community Map</a>
     </div>
+</section>
 --->
-    {% block content %}
 <section class="hero" aria-labelledby="hero-title">
     <h1 id="hero-title">{{ labels.hero_title | safe }}</h1>
     <p>{{ labels.hero_subtitle }}</p>
@@ -107,7 +108,5 @@
         {{ labels.btn_map }}
     </a>
 </div>
-</section>
-{% endblock %}
 </section>
 {% endblock %}
