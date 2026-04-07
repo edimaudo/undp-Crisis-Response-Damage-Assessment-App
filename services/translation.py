@@ -23,7 +23,10 @@ class TranslationService:
                 "btn_report": "Submit Damage Report",
                 "btn_map": "View Community Map",
                 "aria_report": "Submit a new damage report to UNDP",
-                "aria_map": "View the interactive community damage map"
+                "aria_map": "View the interactive community damage map",
+                "error_404_title": "We can't find that page.",
+                "error_404_msg": "The link may be broken, or the report has been moved. Your data is safe.",
+                "btn_back_home": "Back to Homepage"
             },
             "ar": {
                 "hero_title": "رسم خرائط الأضرار. <br>تسريع التعافي.",
@@ -31,7 +34,10 @@ class TranslationService:
                 "btn_report": "تقديم تقرير الأضرار",
                 "btn_map": "عرض خريطة المجتمع",
                 "aria_report": "تقديم تقرير أضرار جديد إلى برنامج الأمم المتحدة الإنمائي",
-                "aria_map": "عرض خريطة أضرار المجتمع التفاعلية"
+                "aria_map": "عرض خريطة أضرار المجتمع التفاعلية",
+                "error_404_title": "الصفحة غير موجودة",
+                "error_404_msg": "قد يكون الرابط معطلاً أو تم نقل التقرير. بياناتك في أمان.",
+                "btn_back_home": "العودة إلى الصفحة الرئيسية"
             },
             "fr": {
                 "hero_title": "Cartographier les Dommages. <br>Accélérer la Reprise.",
@@ -39,7 +45,10 @@ class TranslationService:
                 "btn_report": "Signaler des Dommages",
                 "btn_map": "Voir la Carte",
                 "aria_report": "Soumettre un nouveau rapport de dommages au PNUD",
-                "aria_map": "Voir la carte interactive des dommages"
+                "aria_map": "Voir la carte interactive des dommages",
+                "error_404_title": "Page non trouvée",
+                "error_404_msg": "Le lien est peut-être rompu ou le rapport a été déplacé. Vos données sont en sécurité.",
+                "btn_back_home": "Retour à l'accueil"
             },
             "es": {
                 "hero_title": "Mapear Daños. <br>Acelerar la Recuperación.",
@@ -47,7 +56,10 @@ class TranslationService:
                 "btn_report": "Reportar Daños",
                 "btn_map": "Ver Mapa Comunitario",
                 "aria_report": "Enviar un nuevo informe de daños al PNUD",
-                "aria_map": "Ver el mapa interactivo de daños comunitarios"
+                "aria_map": "Ver el mapa interactivo de daños comunitarios",
+                "error_404_title": "Página no encontrada",
+                "error_404_msg": "El enlace puede estar roto o el informe ha sido movido. Sus datos están seguros.",
+                "btn_back_home": "Volver al inicio"
             },
             "sw": {
                 "hero_title": "Ramani ya Uharibifu. <br>Harakisha Ufufuaji.",
@@ -55,7 +67,10 @@ class TranslationService:
                 "btn_report": "Wasilisha Ripoti ya Uharibifu",
                 "btn_map": "Tazama Ramani ya Jamii",
                 "aria_report": "Wasilisha ripoti mpya ya uharibifu kwa UNDP",
-                "aria_map": "Tazama ramani ya jamii inayoingiliana ya uharibifu"
+                "aria_map": "Tazama ramani ya jamii inayoingiliana ya uharibifu",
+                "error_404_title": "Ukurasa haujapatikana",
+                "error_404_msg": "Kiungo kinaweza kuwa kimevunjika au ripoti imehamishwa. Data yako ni salama.",
+                "btn_back_home": "Rudi Nyumbani"
             },
             "pt": {
                 "hero_title": "Mapear Danos. <br>Acelerar a Recuperação.",
@@ -63,7 +78,10 @@ class TranslationService:
                 "btn_report": "Comunicar Danos",
                 "btn_map": "Ver Mapa Comunitario",
                 "aria_report": "Enviar um novo relatório de danos ao PNUD",
-                "aria_map": "Ver o mapa interativo de danos comunitários"
+                "aria_map": "Ver o mapa interativo de danos comunitários",
+                "error_404_title": "Página não encontrada",
+                "error_404_msg": "O link pode estar quebrado ou o relatório foi movido. Seus dados estão seguros.",
+                "btn_back_home": "Voltar para o início"
             }
         }
         
