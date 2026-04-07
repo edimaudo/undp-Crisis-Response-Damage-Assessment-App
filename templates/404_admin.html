@@ -1,27 +1,51 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Admin Error | UNDP Crisis Response Damage Assessment</title>
-    <style>
-        body { font-family: 'Inter', sans-serif; padding: 50px; background: #f4f4f4; }
-        .error-card { background: white; padding: 40px; border-top: 5px solid #D4D6D8; max-width: 600px; }
-        .code { font-family: monospace; background: #eee; padding: 5px; }
-    </style>
-</head>
-<body>
-    <div class="error-card">
-        <img src="/static/undp-logo-blue.svg" height="40">
-        <h2>Resource Not Found</h2>
-        <p>The requested administrative resource at <span class="code">{{ request.url.path }}</span> could not be located.</p>
-        <hr>
-        <p><strong>Next Steps:</strong></p>
+{% extends "base.html" %}
+
+{% block title %}Admin Error | UNDP Crisis Response{% endblock %}
+
+{% block content %}
+<style>
+    .admin-error-card {
+        background: var(--ui-bg);
+        padding: 40px;
+        border-top: 5px solid #D4D6D8;
+        border-radius: 4px;
+        max-width: 650px;
+        margin: 20px auto;
+    }
+    .code-path {
+        font-family: 'Courier New', monospace;
+        background: rgba(0,0,0,0.1);
+        padding: 4px 8px;
+        border-radius: 4px;
+        word-break: break-all;
+    }
+    .admin-nav {
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border-color);
+    }
+    .admin-nav ul { padding-left: 20px; }
+    .btn-print {
+        margin-top: 20px;
+        padding: 10px 20px;
+        cursor: pointer;
+        background: var(--bg-color);
+        color: var(--text-color);
+        border: 1px solid var(--border-color);
+    }
+</style>
+
+<div class="admin-error-card">
+    <h2>Resource Not Found (404)</h2>
+    <p>The requested administrative resource at <span class="code-path">{{ request.url.path }}</span> could not be located.</p>
+    
+    <div class="admin-nav">
+        <p><strong>Next Steps</strong></p>
         <ul>
-          <!--
-            <li><a href="/admin/triage">Return to Verification Triage</a></li>
-            <li><a href="/admin/dashboard">Go to Command Center</a></li>
+            <li><a href="/admin/triage?lang={{ lang }}">Go to Verification Triage</a></li>
+            <li><a href="/admin/dashboard?lang={{ lang }}">Go to Dashboard</a></li>
         </ul>
-          -->
-        <button onclick="window.print()">Export Error Log</button>
+        
     </div>
-</body>
-</html>
+</div>
+{% endblock %}
