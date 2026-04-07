@@ -26,9 +26,9 @@
         }
 
         /* Font Scaling Logic */
-        [data-size="small"]  { --font-multiplier: 1rem; }
-        [data-size="medium"] { --font-multiplier: 1.25rem; }
-        [data-size="large"]  { --font-multiplier: 1.5rem; }
+        [data-size="small"]  { --font-multiplier: 0.75rem; }
+        [data-size="medium"] { --font-multiplier: 1.rem; }
+        [data-size="large"]  { --font-multiplier: 1.25rem; }
 
         body {
             background-color: var(--bg-color);
@@ -121,6 +121,7 @@
             <button class="btn-tool" onclick="toggleTheme()" title="Toggle Contrast">🌓</button>
             
             <div style="display:flex; gap:4px;">
+                <button class="btn-tool" onclick="setFont('small')" title="Small Text">A-</button>  
                 <button class="btn-tool" onclick="setFont('medium')" title="Normal Text">A</button>
                 <button class="btn-tool" onclick="setFont('large')" title="Large Text">A+</button>
             </div>
