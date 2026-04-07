@@ -34,12 +34,11 @@
 </style>
 
 <div class="error-container">
-    <h1>{{ labels.error_404_title | default("We can't find that page.") }}</h1>
-    <p>
-        {{ labels.error_404_msg | default("The link may be broken, or the crisis report has been moved. Your existing data is safe.") }}
-    </p>
+    <h1>{{ labels.error_404_title }}</h1>
+    <p>{{ labels.error_404_msg }}</p>
+    
     <a href="/?lang={{ lang }}" class="btn-home">
-        {{ labels.btn_back_home | default("Back to Homepage") }}
+        {{ labels.btn_back_home }}
     </a>
 </div>
 {% endblock %}
