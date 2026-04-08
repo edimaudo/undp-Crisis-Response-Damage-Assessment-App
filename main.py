@@ -63,8 +63,8 @@ async def get_report_form(request: Request, lang: str = "en"):
 async def post_report_form(
     request: Request,
     lang: str = "en",
-    lat: Optional[str] = Form(None),
-    lng: Optional[str] = Form(None),
+    lat: str = Form(""),
+    lng: str = Form(""),
     location_text: str = Form(...), # Mandatory: The user must type OR auto-fill this
     level: str = Form(...),
     notes: str = Form(...),
