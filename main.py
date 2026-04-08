@@ -7,6 +7,7 @@ import shutil
 import os
 import json
 import uuid
+import platform
 
 # Correct Architecture Imports
 #from .database import get_db
@@ -33,9 +34,15 @@ async def landing_page(request: Request, lang: str = "en"):
     )
 
 # Reporting Form 
-
 # Create a local directory for reports if it doesn't exist
-REPORTS_DIR = "local_reports"
+# Check if we are on a server (Unix-like) or local (Windows/Mac)
+# Cloud environments usually require writing to /tmp
+if platform.system() == "Windows":
+    REPORTS_DIR = "local_reports"
+else:
+    # Use /tmp for Linux/Cloud environments to avoid "Read-only file system"
+    REPORTS_DIR = "/tmp/local_reports"
+
 os.makedirs(REPORTS_DIR, exist_ok=True)
 
 # Serve the Report Form
