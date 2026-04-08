@@ -26,7 +26,19 @@ class TranslationService:
                 "aria_map": "View the interactive community damage map",
                 "error_404_title": "We can't find that page.",
                 "error_404_msg": "The link may be broken, or the report has been moved. Your data is safe.",
-                "btn_back_home": "Back to Homepage"
+                "btn_back_home": "Back to Homepage",
+                "report_form_title": "Damage Assessment",
+                "report_form_subtitle": "Provide location and photo evidence.",
+                "label_get_location": "Capture Location",
+                "label_take_photo": "Upload Photo",
+                "label_severity": "Estimated Severity",
+                "label_notes": "Additional Notes",
+                "placeholder_notes": "e.g. Blocked roads, hazards...",
+                "btn_submit_report": "Submit Report",
+                "sev_minor": "Minor",
+                "sev_major": "Major",
+                "sev_destroyed": "Destroyed",
+                "location_captured": "Location Verified"
             },
             "ar": {
                 "hero_title": "رسم خرائط الأضرار. <br>تسريع التعافي.",
@@ -37,7 +49,19 @@ class TranslationService:
                 "aria_map": "عرض خريطة أضرار المجتمع التفاعلية",
                 "error_404_title": "الصفحة غير موجودة",
                 "error_404_msg": "قد يكون الرابط معطلاً أو تم نقل التقرير. بياناتك في أمان.",
-                "btn_back_home": "العودة إلى الصفحة الرئيسية"
+                "btn_back_home": "العودة إلى الصفحة الرئيسية",
+                "report_form_title": "تقييم الأضرار",
+                "report_form_subtitle": "يرجى تقديم الموقع والأدلة المصورة.",
+                "label_get_location": "تحديد الموقع",
+                "label_take_photo": "تحميل الصورة",
+                "label_severity": "الخطورة التقديرية",
+                "label_notes": "ملاحظات إضافية",
+                "placeholder_notes": "مثل الطرق المسدودة أو المخاطر...",
+                "btn_submit_report": "إرسال التقرير",
+                "sev_minor": "طفيف",
+                "sev_major": "كبير",
+                "sev_destroyed": "مدمر",
+                "location_captured": "تم التحقق من الموقع"
             },
             "fr": {
                 "hero_title": "Cartographier les Dommages. <br>Accélérer la Reprise.",
@@ -48,7 +72,19 @@ class TranslationService:
                 "aria_map": "Voir la carte interactive des dommages",
                 "error_404_title": "Page non trouvée",
                 "error_404_msg": "Le lien est peut-être rompu ou le rapport a été déplacé. Vos données sont en sécurité.",
-                "btn_back_home": "Retour à l'accueil"
+                "btn_back_home": "Retour à l'accueil",
+                "report_form_title": "Évaluation des Dommages",
+                "report_form_subtitle": "Fournir l'emplacement et des preuves photos.",
+                "label_get_location": "Capturer l'emplacement",
+                "label_take_photo": "Télécharger une photo",
+                "label_severity": "Gravité estimée",
+                "label_notes": "Notes supplémentaires",
+                "placeholder_notes": "ex: Routes bloquées, dangers...",
+                "btn_submit_report": "Soumettre le rapport",
+                "sev_minor": "Mineur",
+                "sev_major": "Majeur",
+                "sev_destroyed": "Détruit",
+                "location_captured": "Emplacement vérifié"
             },
             "es": {
                 "hero_title": "Mapear Daños. <br>Acelerar la Recuperación.",
@@ -59,7 +95,19 @@ class TranslationService:
                 "aria_map": "Ver el mapa interactivo de daños comunitarios",
                 "error_404_title": "Página no encontrada",
                 "error_404_msg": "El enlace puede estar roto o el informe ha sido movido. Sus datos están seguros.",
-                "btn_back_home": "Volver al inicio"
+                "btn_back_home": "Volver al inicio",
+                "report_form_title": "Evaluación de Daños",
+                "report_form_subtitle": "Proporcione ubicación y evidencia fotográfica.",
+                "label_get_location": "Capturar ubicación",
+                "label_take_photo": "Subir foto",
+                "label_severity": "Gravedad estimada",
+                "label_notes": "Notas adicionales",
+                "placeholder_notes": "ej: Carreteras bloqueadas, peligros...",
+                "btn_submit_report": "Enviar informe",
+                "sev_minor": "Leve",
+                "sev_major": "Grave",
+                "sev_destroyed": "Destruido",
+                "location_captured": "Ubicación verificada"
             },
             "sw": {
                 "hero_title": "Ramani ya Uharibifu. <br>Harakisha Ufufuaji.",
@@ -70,7 +118,19 @@ class TranslationService:
                 "aria_map": "Tazama ramani ya jamii inayoingiliana ya uharibifu",
                 "error_404_title": "Ukurasa haujapatikana",
                 "error_404_msg": "Kiungo kinaweza kuwa kimevunjika au ripoti imehamishwa. Data yako ni salama.",
-                "btn_back_home": "Rudi Nyumbani"
+                "btn_back_home": "Rudi Nyumbani",
+                "report_form_title": "Tathmini ya Uharibifu",
+                "report_form_subtitle": "Toa eneo na ushahidi wa picha.",
+                "label_get_location": "Nasa Eneo",
+                "label_take_photo": "Pakia Picha",
+                "label_severity": "Ukali uliokadiriwa",
+                "label_notes": "Maelezo ya ziada",
+                "placeholder_notes": "mfano: Barabara zilizofungwa, hatari...",
+                "btn_submit_report": "Wasilisha Ripoti",
+                "sev_minor": "Ndogo",
+                "sev_major": "Kubwa",
+                "sev_destroyed": "Imeharibiwa",
+                "location_captured": "Eneo limethibitishwa"
             },
             "pt": {
                 "hero_title": "Mapear Danos. <br>Acelerar a Recuperação.",
@@ -81,7 +141,19 @@ class TranslationService:
                 "aria_map": "Ver o mapa interativo de danos comunitários",
                 "error_404_title": "Página não encontrada",
                 "error_404_msg": "O link pode estar quebrado ou o relatório foi movido. Seus dados estão seguros.",
-                "btn_back_home": "Voltar para o início"
+                "btn_back_home": "Voltar para o início",
+                "report_form_title": "Avaliação de Danos",
+                "report_form_subtitle": "Forneça localização e evidências fotográficas.",
+                "label_get_location": "Capturar localização",
+                "label_take_photo": "Carregar foto",
+                "label_severity": "Gravidade estimada",
+                "label_notes": "Notas adicionais",
+                "placeholder_notes": "ex: Estradas bloqueadas, perigos...",
+                "btn_submit_report": "Enviar relatório",
+                "sev_minor": "Mínimo",
+                "sev_major": "Grave",
+                "sev_destroyed": "Destruído",
+                "location_captured": "Localização verificada"
             }
         }
         
