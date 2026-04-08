@@ -6,25 +6,35 @@
 <style>
     .report-container { max-width: 600px; margin: 0 auto; }
     .form-section { margin-bottom: 2rem; }
-    .input-row { margin-bottom: 1.5rem; }
     
+    /* Ensuring all action buttons have the exact same width and alignment */
     .btn-action-large {
-        display: block; width: 100%; padding: 1.2rem; 
-        font-size: 1.1rem; text-align: center; border-radius: 4px;
-        border: 1px solid var(--border-color); cursor: pointer; font-weight: bold;
+        display: block; 
+        width: 100%; 
+        padding: 1.2rem; 
+        font-size: 1.1rem; 
+        text-align: center; 
+        border-radius: 4px;
+        border: 1px solid var(--border-color); 
+        cursor: pointer; 
+        font-weight: bold;
+        box-sizing: border-box; /* Critical for alignment */
     }
 
     .btn-gps { background: var(--ui-bg); color: var(--text-color); }
-    .btn-camera { background: var(--undp-blue); color: white; margin-top: 10px; }
+    .btn-camera { background: var(--ui-bg); color: var(--text-color); }
     
     .severity-picker { display: flex; gap: 10px; border: none; padding: 0; margin: 1rem 0; }
     .chip {
         flex: 1; padding: 1rem 0; text-align: center; font-weight: bold;
         background: var(--ui-bg); border-radius: 4px; border: 2px solid var(--border-color); cursor: pointer;
     }
+    
+    /* Severity Selection Highlight */
     input[type="radio"]:checked + .chip { 
         border-color: var(--undp-blue); 
-        background: rgba(0, 110, 181, 0.1); 
+        background: var(--undp-blue);
+        color: white;
     }
 
     textarea { 
@@ -34,8 +44,16 @@
     }
 
     .btn-submit-final { 
-        background-color: #d92626; color: white; font-size: 1.25rem; 
-        margin-top: 2rem; border: none; width: 100%; padding: 1rem; border-radius: 4px; cursor: pointer;
+        background-color: var(--undp-blue); /* Changed from Red to Professional Blue */
+        color: white; 
+        font-size: 1.25rem; 
+        margin-top: 2rem; 
+        border: none; 
+        width: 100%; 
+        padding: 1.2rem; 
+        border-radius: 4px; 
+        cursor: pointer;
+        font-weight: bold;
     }
 </style>
 
@@ -78,8 +96,8 @@
         </div>
 
         <div class="form-section">
-            <label for="notes" style="font-weight:bold">{{ labels.label_notes }}</label>
-            <textarea id="notes" name="notes" rows="4" placeholder="{{ labels.placeholder_notes }}"></textarea>
+            <label for="notes" style="font-weight:bold">{{ labels.label_details }}</label>
+            <textarea id="notes" name="notes" rows="4" placeholder="{{ labels.placeholder_notes }}" required></textarea>
         </div>
 
         <button type="submit" class="btn-submit-final">{{ labels.btn_submit_report }}</button>
@@ -90,13 +108,22 @@
     function getLocation() {
         const btn = document.getElementById('gps-btn');
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((pos) => {
-                document.getElementById('lat').value = pos.coords.latitude;
-                document.getElementById('lng').value = pos.coords.longitude;
-                btn.style.background = "#28a745";
-                btn.style.color = "white";
-                btn.innerText = "{{ labels.location_captured }}";
-            });
+            navigator.geolocation.getCurrentPosition(
+                (pos) => {
+                    document.getElementById('lat').value = pos.coords.latitude;
+                    document.getElementById('lng').value = pos.coords.longitude;
+                    btn.style.background = "#28a745";
+                    btn.style.color = "white";
+                    btn.innerText = "{{ labels.location_captured }}";
+                },
+                (error) => {
+                    // Feedback if GPS is blocked or fails
+                    console.error(error);
+                    alert("Error: Please enable location services in your browser settings to capture coordinates.");
+                }
+            );
+        } else {
+            alert("Geolocation is not supported by this browser.");
         }
     }
 
