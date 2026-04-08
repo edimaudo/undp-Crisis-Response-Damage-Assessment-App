@@ -1,52 +1,114 @@
-<!DOCTYPE html>
-<html lang="{{ lang }}" dir="{{ 'rtl' if lang == 'ar' else 'ltr' }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submit Report | Crisis and Damage Response Assessment</title>
-    </head>
-<form id="crisis-report-form" action="/report" method="POST" enctype="multipart/form-data">
+{% extends "base.html" %}
+
+{% block title %}{{ labels.btn_report }} | UNDP Crisis Response{% endblock %}
+
+{% block content %}
+<style>
+    .report-container { max-width: 600px; margin: 0 auto; }
+    .form-section { margin-bottom: 2rem; }
+    .input-row { margin-bottom: 1.5rem; }
     
-    <section id="essentials">
-        <h2>Report Damage</h2>
+    .btn-action-large {
+        display: block; width: 100%; padding: 1.2rem; 
+        font-size: 1.1rem; text-align: center; border-radius: 4px;
+        border: 1px solid var(--border-color); cursor: pointer; font-weight: bold;
+    }
+
+    .btn-gps { background: var(--ui-bg); color: var(--text-color); }
+    .btn-camera { background: var(--undp-blue); color: white; margin-top: 10px; }
+    
+    .severity-picker { display: flex; gap: 10px; border: none; padding: 0; margin: 1rem 0; }
+    .chip {
+        flex: 1; padding: 1rem 0; text-align: center; font-weight: bold;
+        background: var(--ui-bg); border-radius: 4px; border: 2px solid var(--border-color); cursor: pointer;
+    }
+    input[type="radio"]:checked + .chip { 
+        border-color: var(--undp-blue); 
+        background: rgba(0, 110, 181, 0.1); 
+    }
+
+    textarea { 
+        width: 100%; padding: 1rem; border-radius: 4px; 
+        border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-color);
+        box-sizing: border-box; font-size: 1rem;
+    }
+
+    .btn-submit-final { 
+        background-color: #d92626; color: white; font-size: 1.25rem; 
+        margin-top: 2rem; border: none; width: 100%; padding: 1rem; border-radius: 4px; cursor: pointer;
+    }
+</style>
+
+<div class="report-container">
+    <h2>{{ labels.report_form_title }}</h2>
+    <p>{{ labels.report_form_subtitle }}</p>
+
+    <form action="/report?lang={{ lang }}" method="POST" enctype="multipart/form-data">
         
-        <div class="input-row">
-            <button type="button" class="btn-gps" onclick="autoLocate()">Use My GPS</button>
-            <div id="map-mini" style="height: 150px;"></div>
-            <input type="hidden" name="lat" id="lat">
-            <input type="hidden" name="lng" id="lng">
+        <div class="form-section">
+            <button type="button" class="btn-action-large btn-gps" onclick="getLocation()" id="gps-btn">
+                {{ labels.label_get_location }}
+            </button>
+            <input type="hidden" name="lat" id="lat" required>
+            <input type="hidden" name="lng" id="lng" required>
         </div>
 
-        <div class="input-row">
-            <label for="damage_photo" class="btn-camera-large">
-                Tap to Take Photo
+        <div class="form-section">
+            <label for="damage_photo" class="btn-action-large btn-camera">
+                {{ labels.label_take_photo }}
             </label>
-            <input type="file" id="damage_photo" name="damage_photo" accept="image/*" capture="environment" hidden onchange="preview(this)">
-            <img id="quick-preview" style="display:none; width: 100px; border-radius: 8px;">
+            <input type="file" id="damage_photo" name="damage_photo" accept="image/*" capture="environment" style="display:none" onchange="previewImage(this)">
+            <div id="preview-container" style="margin-top:10px; display:none;">
+                <img id="img-preview" style="width:100%; border-radius:4px;" alt="Image Preview">
+            </div>
         </div>
 
-        <fieldset class="severity-picker">
-            <legend class="sr-only">Severity</legend>
-            <input type="radio" name="level" id="low" value="minor" hidden>
-            <label for="low" class="chip">Minor</label>
+        <div class="form-section">
+            <label style="font-weight:bold">{{ labels.label_severity }}</label>
+            <fieldset class="severity-picker">
+                <input type="radio" name="level" id="minor" value="minor" style="display:none" required>
+                <label for="minor" class="chip">{{ labels.sev_minor }}</label>
 
-            <input type="radio" name="level" id="mid" value="major" hidden>
-            <label for="mid" class="chip">Major</label>
+                <input type="radio" name="level" id="major" value="major" style="display:none">
+                <label for="major" class="chip">{{ labels.sev_major }}</label>
 
-            <input type="radio" name="level" id="high" value="destroyed" hidden>
-            <label for="high" class="chip">Destroyed</label>
-        </fieldset>
-    </section>
-
-    <hr aria-hidden="true">
-
-    <details>
-        <summary class="btn-text">+ Add building/area details (Optional)</summary>
-        <div class="details-content">
-            <label for="notes">Notes (Building or Hazards)</label>
-            <textarea id="notes" name="notes" placeholder="e.g. Gas leak, road blocked..."></textarea>
+                <input type="radio" name="level" id="destroyed" value="destroyed" style="display:none">
+                <label for="destroyed" class="chip">{{ labels.sev_destroyed }}</label>
+            </fieldset>
         </div>
-    </details>
 
-    <button type="submit" class="btn-submit-final">Send Report</button>
-</form>
+        <div class="form-section">
+            <label for="notes" style="font-weight:bold">{{ labels.label_notes }}</label>
+            <textarea id="notes" name="notes" rows="4" placeholder="{{ labels.placeholder_notes }}"></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit-final">{{ labels.btn_submit_report }}</button>
+    </form>
+</div>
+
+<script>
+    function getLocation() {
+        const btn = document.getElementById('gps-btn');
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((pos) => {
+                document.getElementById('lat').value = pos.coords.latitude;
+                document.getElementById('lng').value = pos.coords.longitude;
+                btn.style.background = "#28a745";
+                btn.style.color = "white";
+                btn.innerText = "{{ labels.location_captured }}";
+            });
+        }
+    }
+
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                document.getElementById('img-preview').src = e.target.result;
+                document.getElementById('preview-container').style.display = 'block';
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+{% endblock %}
