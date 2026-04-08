@@ -63,10 +63,11 @@ async def get_report_form(request: Request, lang: str = "en"):
 async def post_report_form(
     request: Request,
     lang: str = "en",
-    lat: str = Form(...),
-    lng: str = Form(...),
+    lat: Optional[str] = Form(None),
+    lng: Optional[str] = Form(None),
+    location_text: str = Form(...), # Mandatory: The user must type OR auto-fill this
     level: str = Form(...),
-    notes: str = Form(None),
+    notes: str = Form(...),
     damage_photo: UploadFile = File(None)
 ):
     report_id = str(uuid.uuid4())
