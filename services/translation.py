@@ -38,7 +38,11 @@ class TranslationService:
                 "sev_minor": "Minor",
                 "sev_major": "Major",
                 "sev_destroyed": "Destroyed",
-                "location_captured": "Location Verified"
+                "location_captured": "Location Verified",
+                "label_location_details": "Incident Location",
+                "placeholder_location": "Enter address, landmark, or village",
+                "btn_detect": "Detect"#,
+                #"label_details": "Description of Damage"
             },
             "ar": {
                 "hero_title": "رسم خرائط الأضرار. <br>تسريع التعافي.",
@@ -61,7 +65,10 @@ class TranslationService:
                 "sev_minor": "طفيف",
                 "sev_major": "كبير",
                 "sev_destroyed": "مدمر",
-                "location_captured": "تم التحقق من الموقع"
+                "location_captured": "تم التحقق من الموقع",
+                "label_location_details": "موقع الحادث",
+                "placeholder_location": "أدخل العنوان أو المعلم أو القرية",
+                "btn_detect": "تحديد"
             },
             "fr": {
                 "hero_title": "Cartographier les Dommages. <br>Accélérer la Reprise.",
@@ -84,7 +91,11 @@ class TranslationService:
                 "sev_minor": "Mineur",
                 "sev_major": "Majeur",
                 "sev_destroyed": "Détruit",
-                "location_captured": "Emplacement vérifié"
+                "location_captured": "Emplacement vérifié",
+                "label_location_details": "Lieu de l'incident",
+                "placeholder_location": "Entrez l'adresse, un point de repère ou le village",
+                "btn_detect": "Détecter"
+                
             },
             "es": {
                 "hero_title": "Mapear Daños. <br>Acelerar la Recuperación.",
@@ -107,7 +118,10 @@ class TranslationService:
                 "sev_minor": "Leve",
                 "sev_major": "Grave",
                 "sev_destroyed": "Destruido",
-                "location_captured": "Ubicación verificada"
+                "location_captured": "Ubicación verificada",
+                "label_location_details": "Ubicación del incidente",
+                "placeholder_location": "Ingrese dirección, punto de referencia o pueblo",
+                "btn_detect": "Detectar"
             },
             "sw": {
                 "hero_title": "Ramani ya Uharibifu. <br>Harakisha Ufufuaji.",
@@ -130,7 +144,10 @@ class TranslationService:
                 "sev_minor": "Ndogo",
                 "sev_major": "Kubwa",
                 "sev_destroyed": "Imeharibiwa",
-                "location_captured": "Eneo limethibitishwa"
+                "location_captured": "Eneo limethibitishwa",
+                "label_location_details": "Mahali pa Tukio",
+                "placeholder_location": "Ingiza anwani, alama, au kijiji",
+                "btn_detect": "Gundua"
             },
             "pt": {
                 "hero_title": "Mapear Danos. <br>Acelerar a Recuperação.",
@@ -153,7 +170,10 @@ class TranslationService:
                 "sev_minor": "Mínimo",
                 "sev_major": "Grave",
                 "sev_destroyed": "Destruído",
-                "location_captured": "Localização verificada"
+                "location_captured": "Localização verificada",
+                "label_location_details": "Localização do Incidente",
+                "placeholder_location": "Digite o endereço, ponto de referência ou aldeia",
+                "btn_detect": "Detectar"
             }
         }
         
