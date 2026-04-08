@@ -1,65 +1,51 @@
 {% extends "base.html" %}
 
-{% block title %}{{ labels.btn_report }} | UNDP Crisis Response{% endblock %}
+{% block title %}{{ labels.report_form_title }} | UNDP Crisis Response{% endblock %}
 
 {% block content %}
 <style>
     .report-container { max-width: 600px; margin: 0 auto; }
     .form-section { margin-bottom: 2rem; }
     
-    /* Ensuring all action buttons have the exact same width and alignment */
     .btn-action-large {
-        display: block; 
-        width: 100%; 
-        padding: 1.2rem; 
-        font-size: 1.1rem; 
-        text-align: center; 
-        border-radius: 4px;
-        border: 1px solid var(--border-color); 
-        cursor: pointer; 
-        font-weight: bold;
-        box-sizing: border-box; /* Critical for alignment */
+        display: block; width: 100%; padding: 1.2rem; 
+        font-size: 1.1rem; text-align: center; border-radius: 4px;
+        cursor: pointer; font-weight: bold; box-sizing: border-box;
+        border: none;
     }
 
-    .btn-gps { background: var(--ui-bg); color: var(--text-color); }
-    
-    .btn-camera, .btn-submit-final { 
+    /* Neutral Utility Style */
+    .btn-gps-neutral { 
+        background: var(--ui-bg); 
+        color: var(--text-color); 
+        border: 1px solid var(--border-color);
+        padding: 0 15px; border-radius: 4px; cursor: pointer;
+    }
+
+    /* Primary Action Style (UNDP Blue) */
+    .btn-primary-action { 
         background-color: var(--undp-blue); 
         color: white; 
-        border: none; /* Removes the neutral border to look cleaner */
     }
-    
+
+    .location-input-group { display: flex; gap: 8px; margin-bottom: 8px; }
+
     .severity-picker { display: flex; gap: 10px; border: none; padding: 0; margin: 1rem 0; }
     .chip {
         flex: 1; padding: 1rem 0; text-align: center; font-weight: bold;
         background: var(--ui-bg); border-radius: 4px; border: 2px solid var(--border-color); cursor: pointer;
     }
-    
-    /* Severity Selection Highlight */
     input[type="radio"]:checked + .chip { 
-        border-color: var(--undp-blue); 
-        background: var(--undp-blue);
-        color: white;
+        border-color: var(--undp-blue); background: var(--undp-blue); color: white;
     }
 
-    textarea { 
+    textarea, .text-input { 
         width: 100%; padding: 1rem; border-radius: 4px; 
         border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-color);
         box-sizing: border-box; font-size: 1rem;
     }
 
-    .btn-submit-final { 
-        background-color: var(--undp-blue); /* Changed from Red to Professional Blue */
-        color: white; 
-        font-size: 1.25rem; 
-        margin-top: 2rem; 
-        border: none; 
-        width: 100%; 
-        padding: 1.2rem; 
-        border-radius: 4px; 
-        cursor: pointer;
-        font-weight: bold;
-    }
+    #location-status { font-size: 0.85rem; margin-top: 5px; display: block; color: #666; }
 </style>
 
 <div class="report-container">
@@ -69,20 +55,28 @@
     <form action="/report?lang={{ lang }}" method="POST" enctype="multipart/form-data">
         
         <div class="form-section">
-            <button type="button" class="btn-action-large btn-gps" onclick="getLocation()" id="gps-btn">
-                {{ labels.label_get_location }}
-            </button>
-            <input type="hidden" name="lat" id="lat" required>
-            <input type="hidden" name="lng" id="lng" required>
+            <label style="font-weight:bold">{{ labels.label_location_details }}</label>
+            <div class="location-input-group">
+                <input type="text" id="location_text" name="location_text" 
+                       class="text-input" placeholder="{{ labels.placeholder_location }}" 
+                       required oninput="updateLocationStatus('manual')">
+                
+                <button type="button" class="btn-gps-neutral" onclick="getLocation()" id="detect-btn">
+                    {{ labels.btn_detect }}
+                </button>
+            </div>
+            <input type="hidden" name="lat" id="lat">
+            <input type="hidden" name="lng" id="lng">
+            <span id="location-status">{{ labels.status_awaiting_input }}</span>
         </div>
 
         <div class="form-section">
-            <label for="damage_photo" class="btn-action-large btn-camera">
+            <label for="damage_photo" class="btn-action-large btn-primary-action">
                 {{ labels.label_take_photo }}
             </label>
             <input type="file" id="damage_photo" name="damage_photo" accept="image/*" capture="environment" style="display:none" onchange="previewImage(this)">
             <div id="preview-container" style="margin-top:10px; display:none;">
-                <img id="img-preview" style="width:100%; border-radius:4px;" alt="Image Preview">
+                <img id="img-preview" style="width:100%; border-radius:4px;" alt="Preview">
             </div>
         </div>
 
@@ -105,30 +99,53 @@
             <textarea id="notes" name="notes" rows="4" placeholder="{{ labels.placeholder_notes }}" required></textarea>
         </div>
 
-        <button type="submit" class="btn-submit-final">{{ labels.btn_submit_report }}</button>
+        <button type="submit" class="btn-action-large btn-primary-action" style="font-size: 1.25rem; margin-top: 1rem;">
+            {{ labels.btn_submit_report }}
+        </button>
     </form>
 </div>
 
 <script>
-    function getLocation() {
-        const btn = document.getElementById('gps-btn');
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (pos) => {
-                    document.getElementById('lat').value = pos.coords.latitude;
-                    document.getElementById('lng').value = pos.coords.longitude;
-                    btn.style.background = "#28a745";
-                    btn.style.color = "white";
-                    btn.innerText = "{{ labels.location_captured }}";
-                },
-                (error) => {
-                    // Feedback if GPS is blocked or fails
-                    console.error(error);
-                    alert("Error: Please enable location services in your browser settings to capture coordinates.");
-                }
-            );
+    function updateLocationStatus(type) {
+        const status = document.getElementById('location-status');
+        if (type === 'gps') {
+            status.style.color = "#28a745";
+            status.innerText = "{{ labels.status_gps_verified }}";
         } else {
-            alert("Geolocation is not supported by this browser.");
+            status.style.color = "var(--undp-blue)";
+            status.innerText = "{{ labels.status_manual_entry }}";
+            // Clear coordinates to ensure manual text is the source of truth
+            document.getElementById('lat').value = "";
+            document.getElementById('lng').value = "";
+        }
+    }
+
+    async function getLocation() {
+        const btn = document.getElementById('detect-btn');
+        const textInput = document.getElementById('location_text');
+
+        if (navigator.geolocation) {
+            btn.disabled = true;
+            navigator.geolocation.getCurrentPosition(async (pos) => {
+                const lat = pos.coords.latitude;
+                const lng = pos.coords.longitude;
+                document.getElementById('lat').value = lat;
+                document.getElementById('lng').value = lng;
+                
+                updateLocationStatus('gps');
+                btn.disabled = false;
+
+                try {
+                    const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`);
+                    const data = await res.json();
+                    if(data.display_name) textInput.value = data.display_name;
+                } catch(e) {
+                    textInput.value = lat.toFixed(5) + ", " + lng.toFixed(5);
+                }
+            }, (err) => {
+                btn.disabled = false;
+                updateLocationStatus('manual');
+            });
         }
     }
 
