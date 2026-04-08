@@ -1,9 +1,12 @@
 from fastapi import FastAPI, Request, Form, Depends, UploadFile, File, status
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy.ext.asyncio import AsyncSession
 import shutil
+import os
+import json
+import uuid
 
 # Correct Architecture Imports
 #from .database import get_db
@@ -30,6 +33,62 @@ async def landing_page(request: Request, lang: str = "en"):
     )
 
 # Reporting Form 
+
+# Create a local directory for reports if it doesn't exist
+REPORTS_DIR = "local_reports"
+os.makedirs(REPORTS_DIR, exist_ok=True)
+
+# Serve the Report Form
+@app.get("/report", response_class=HTMLResponse)
+async def get_report_form(request: Request, lang: str = "en"):
+    labels = TranslationService.get_ui_labels(lang)
+    
+    return templates.TemplateResponse(
+        request=request,
+        name="report_form.html",
+        context={
+            "lang": lang,
+            "labels": labels
+        }
+    )
+# Handle Form Submission (Local Storage) --> will link to DB in future
+@app.post("/report")
+async def post_report_form(
+    request: Request,
+    lang: str = "en",
+    lat: str = Form(...),
+    lng: str = Form(...),
+    level: str = Form(...),
+    notes: str = Form(None),
+    damage_photo: UploadFile = File(None)
+):
+    report_id = str(uuid.uuid4())
+    
+    # Generate a dynamic UTC timestamp in ISO format
+    # Example: "2026-04-08T14:30:00Z"
+    current_time = datetime.now(timezone.utc).isoformat()
+
+    report_data = {
+        "report_id": report_id,
+        "language": lang,
+        "location": {"lat": lat, "lng": lng},
+        "severity": level,
+        "notes": notes,
+        "timestamp": current_time  # Dynamic timestamp
+    }
+
+    # Save JSON data
+    file_path = os.path.join(REPORTS_DIR, f"{report_id}.json")
+    with open(file_path, "w", encoding="utf-8") as f:
+        json.dump(report_data, f, indent=4)
+
+    # Save Photo if provided
+    if damage_photo and damage_photo.filename:
+        photo_path = os.path.join(REPORTS_DIR, f"{report_id}_photo.jpg")
+        with open(photo_path, "wb") as buffer:
+            buffer.write(await damage_photo.read())
+
+    return RedirectResponse(url=f"/?lang={lang}", status_code=303)
 # @app.get("/report")
 # async def report_form_get(request: Request):
 #     # Detect browser language (e.g., "es-MX,es;q=0.9")
