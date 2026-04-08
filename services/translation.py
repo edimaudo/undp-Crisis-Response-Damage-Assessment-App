@@ -41,8 +41,11 @@ class TranslationService:
                 "location_captured": "Location Verified",
                 "label_location_details": "Incident Location",
                 "placeholder_location": "Enter address, landmark, or village",
-                "btn_detect": "Detect"#,
-                #"label_details": "Description of Damage"
+                "btn_detect": "Detect",
+                "label_location_details": "Incident Location",
+                "status_awaiting_input": "Awaiting location input...",
+                "status_gps_verified": "Precise GPS coordinates captured",
+                "status_manual_entry": "Using manual address description"
             },
             "ar": {
                 "hero_title": "رسم خرائط الأضرار. <br>تسريع التعافي.",
@@ -68,7 +71,11 @@ class TranslationService:
                 "location_captured": "تم التحقق من الموقع",
                 "label_location_details": "موقع الحادث",
                 "placeholder_location": "أدخل العنوان أو المعلم أو القرية",
-                "btn_detect": "تحديد"
+                "btn_detect": "تحديد",
+                "label_location_details": "موقع الحادث",
+                "status_awaiting_input": "بانتظار إدخال الموقع...",
+                "status_gps_verified": "تم التقاط إحداثيات GPS دقيقة",
+                "status_manual_entry": "استخدام وصف العنوان اليدوي"
             },
             "fr": {
                 "hero_title": "Cartographier les Dommages. <br>Accélérer la Reprise.",
@@ -94,7 +101,11 @@ class TranslationService:
                 "location_captured": "Emplacement vérifié",
                 "label_location_details": "Lieu de l'incident",
                 "placeholder_location": "Entrez l'adresse, un point de repère ou le village",
-                "btn_detect": "Détecter"
+                "btn_detect": "Détecter",
+                "label_location_details": "Lieu de l'incident",
+                "status_awaiting_input": "En attente de localisation...",
+                "status_gps_verified": "Coordonnées GPS précises capturées",
+                "status_manual_entry": "Utilisation de l'adresse manuelle"
                 
             },
             "es": {
@@ -121,7 +132,11 @@ class TranslationService:
                 "location_captured": "Ubicación verificada",
                 "label_location_details": "Ubicación del incidente",
                 "placeholder_location": "Ingrese dirección, punto de referencia o pueblo",
-                "btn_detect": "Detectar"
+                "btn_detect": "Detectar",
+                "label_location_details": "Ubicación del incidente",
+                "status_awaiting_input": "Esperando ubicación...",
+                "status_gps_verified": "Coordenadas GPS precisas capturadas",
+                "status_manual_entry": "Usando descripción de dirección manual"
             },
             "sw": {
                 "hero_title": "Ramani ya Uharibifu. <br>Harakisha Ufufuaji.",
@@ -147,7 +162,11 @@ class TranslationService:
                 "location_captured": "Eneo limethibitishwa",
                 "label_location_details": "Mahali pa Tukio",
                 "placeholder_location": "Ingiza anwani, alama, au kijiji",
-                "btn_detect": "Gundua"
+                "btn_detect": "Gundua",
+                "label_location_details": "Mahali pa Tukio",
+                "status_awaiting_input": "Inasubiri eneo...",
+                "status_gps_verified": "Kuratibu sahihi za GPS zimenaswa",
+                "status_manual_entry": "Inatumia maelezo ya anwani ya mwongozo"
             },
             "pt": {
                 "hero_title": "Mapear Danos. <br>Acelerar a Recuperação.",
@@ -173,7 +192,11 @@ class TranslationService:
                 "location_captured": "Localização verificada",
                 "label_location_details": "Localização do Incidente",
                 "placeholder_location": "Digite o endereço, ponto de referência ou aldeia",
-                "btn_detect": "Detectar"
+                "btn_detect": "Detectar",
+                "label_location_details": "Localização do Incidente",
+                "status_awaiting_input": "Aguardando localização...",
+                "status_gps_verified": "Coordenadas GPS precisas capturadas",
+                "status_manual_entry": "Usando descrição de endereço manual"
             }
         }
         
