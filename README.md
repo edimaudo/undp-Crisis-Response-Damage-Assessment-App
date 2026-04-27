@@ -1,4 +1,4 @@
-# Crisis Response & Damage Assessment App
+# Crisis Watch
 
 ## Overview
 The Problem: Crisis response partners need a "ground-truth" signal within the first 48 hours of a disaster to classify building damage and guide rapid intervention.
@@ -17,30 +17,6 @@ The Objective: A highly user-friendly, open-source tool for communities to submi
 ## Project Structure
 
 ```
-Crisis Response & Damage Assessment App
-├── main.py              # FastAPI entry point & Routing
-├── models.py            # PostGIS database models (Infrastructure & Crisis types)
-├── schemas.py           # Data validation (Infrastructure, Damage Levels)
-├── database.py          # PostgreSQL/PostGIS connection logic
-├── crud.py              # Logic for Versioning & Redundancy detection
-├── /templates             
-│   ├── index.html         # Landing page 
-│   ├── report_form.html   # Report damage (Photo, Footprints, Core Questions)
-│   ├── community_map.html # Public map with "My Report" highlighting
-│   ├── admin_triage.html  # Staffer verification & data update page
-│   ├── dashboard.html     # Analytics & GIS Export interface
-│   ├── login.html         # UNDP Staffer login
-│   └── 404_error.html     # Error page
-├── /static               
-│   ├── /css              # 
-│   ├── /js               # Local storage logic for "Upload Later"
-│   ├── /images           # Store UNDP images
-│   └── /maps             # Cached building footprint vector tiles
-├── /services             
-│   ├── translation.py    # Auto-translation for descriptions
-│   ├── anonymization.py  # PII/Metadata stripping logic
-│   └── export_engine.py  # GeoJSON/Shapefile generation
-├── /migrations           # Database versioning (Alembic)
-├── docker-compose.yml    # Deployment
-└── requirements.txt      # Python dependencies 
+Crisis Watch
+
 ```
