@@ -4,6 +4,14 @@
 The Problem: Crisis response partners need a "ground-truth" signal within the first 48 hours of a disaster to classify building damage and guide rapid intervention.
 The Objective: A highly user-friendly, open-source tool for communities to submit photos, classify damage (Minimal, Partial, Complete), and geolocate infrastructure (via building footprints) in low-connectivity environments.
 
+## Architecture
+- **Backend**: FastAPI (Python) with PostgreSQL database
+- **Frontend**: Jinja2 templates + Tailwind CSS + Vanilla JavaScript  
+- **Authentication**: JWT-based with role-based access control
+- **Image Processing**: Automatic compression and WebP conversion
+- **Analytics**: Comprehensive statistics, trends, and predictive insights
+- **Translations**: 6 UN languages (EN, AR, ZH, FR, RU, ES)
+
 ## Key Features 
 - Photo & Data Capture: Input photo, description, and 3-tier damage classification.
 - Building Footprint Geolocation: Interactive map overlay allowing users to select specific building footprints or describe locations via landmarks.
@@ -14,8 +22,7 @@ The Objective: A highly user-friendly, open-source tool for communities to submi
 - Structured Export: Data export in standard formats (CSV, GeoJSON, Shapefiles, REST API) for UNDP GIS integration.
 - Non-Monetary Incentives: Features to encourage engagement without promoting bad actors or duplicate submissions.
 
-## Features Implemented
-
+## Features Breakdonw
 ### Authentication & Authorization
 - JWT-based authentication
 - Password hashing with bcrypt
@@ -58,15 +65,9 @@ Crisis Watch
 
 ```
 
-## Architecture
-- **Backend**: FastAPI (Python) with PostgreSQL database
-- **Frontend**: Jinja2 templates + Tailwind CSS + Vanilla JavaScript  
-- **Authentication**: JWT-based with role-based access control
-- **Image Processing**: Automatic compression and WebP conversion
-- **Analytics**: Comprehensive statistics, trends, and predictive insights
-- **Translations**: 6 UN languages (EN, AR, ZH, FR, RU, ES)
 
-## Quick Start
+
+## Setup
 
 ### 1. Install Dependencies
 ```bash
