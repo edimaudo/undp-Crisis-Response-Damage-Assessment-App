@@ -22,7 +22,7 @@ Objective: A highly user-friendly, open-source tool for communities to submit ph
 - Structured Export: Data export in standard formats (CSV, GeoJSON, Shapefiles, REST API) for UNDP GIS integration.
 - Non-Monetary Incentives: Features to encourage engagement without promoting bad actors or duplicate submissions.
 
-## Features Breakdonw
+## Features Breakdown
 ### Authentication & Authorization
 - JWT-based authentication
 - Password hashing with bcrypt
