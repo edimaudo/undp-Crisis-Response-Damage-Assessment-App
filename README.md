@@ -2,6 +2,7 @@
 
 ## Overview
 Problem: Crisis response partners need a "ground-truth" signal within the first 48 hours of a disaster to classify building damage and guide rapid intervention.
+
 Objective: A highly user-friendly, open-source tool for communities to submit photos, classify damage (Minimal, Partial, Complete), and geolocate infrastructure (via building footprints) in low-connectivity environments.
 
 ## Architecture
