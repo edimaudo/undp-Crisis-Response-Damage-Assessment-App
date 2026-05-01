@@ -5,7 +5,7 @@ Problem: Crisis response partners need a "ground-truth" signal within the first 
 Objective: A highly user-friendly, open-source tool for communities to submit photos, classify damage (Minimal, Partial, Complete), and geolocate infrastructure (via building footprints) in low-connectivity environments.
 
 ## Architecture
-- **Backend**: FastAPI (Python) with PostgreSQL database
+- **Backend**: FastAPI (Python) with database
 - **Frontend**: Jinja2 templates + Tailwind CSS + Vanilla JavaScript  
 - **Authentication**: JWT-based with role-based access control
 - **Image Processing**: Automatic compression and WebP conversion
@@ -21,42 +21,6 @@ Objective: A highly user-friendly, open-source tool for communities to submit ph
 - Scalable Backend: Designed to handle 500k+ reports per crisis across hundreds of crises annually.
 - Structured Export: Data export in standard formats (CSV, GeoJSON, Shapefiles, REST API) for UNDP GIS integration.
 - Non-Monetary Incentives: Features to encourage engagement without promoting bad actors or duplicate submissions.
-
-## Features Breakdown
-### Authentication & Authorization
-- JWT-based authentication
-- Password hashing with bcrypt
-- Role-based access control (user/admin)
-- First registered user becomes admin
-- Session management
-
-### Damage Reporting
-- Submit reports with photos
-- Automatic image compression (WebP, <1MB)
-- Geolocation support
-- Damage classification
-- Infrastructure/crisis categorization
-- Filtering and pagination
-- Anonymous submissions
-
-### Analytics & Statistics
-- Overview statistics
-- Temporal trends
-- Geospatial distribution
-- Damage severity heatmap
-- Comparative analysis
-- Predictive insights
-
-### Data Export
-- CSV export
-- GeoJSON export
-- Admin-only access
-
-### Translations
-- 6 UN languages: EN, AR, ZH, FR, RU, ES
-- JSON-based translation files
-- Client-side language switching
-
 
 ## Project Structure
 
