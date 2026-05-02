@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form method="post" action="/reports/submit" enctype="multipart/form-data">
+
+<input type="file" name="file">
+<input name="lat">
+<input name="lon">
+
+<button>Submit</button>
+
+</form>
+
+{% endblock %}
