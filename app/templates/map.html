@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div id="map" style="height:500px"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+const m = L.map('map').setView([0,0],2);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(m);
+
+fetch('/reports/api').then(r=>r.json()).then(d=>{
+ d.forEach(r=>L.marker([r.latitude,r.longitude]).addTo(m))
+});
+</script>
+
+{% endblock %}
