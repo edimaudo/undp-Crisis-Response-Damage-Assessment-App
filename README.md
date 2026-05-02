@@ -66,7 +66,8 @@ crisis_watch/
 │   │   └── rewards.py
 │   ├── templates/
 │   │   ├── base.html
-│   │   ├── index.html
+|   |   ├── index.html # landing page
+│   │   ├── home.html
 │   │   ├── login.html
 │   │   ├── register.html
 │   │   ├── submit.html
