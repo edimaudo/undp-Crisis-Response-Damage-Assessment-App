@@ -6,7 +6,7 @@ Problem: Crisis response partners need a "ground-truth" signal within the first 
 Objective: A highly user-friendly, open-source tool for communities to submit photos, classify damage (Minimal, Partial, Complete), and geolocate infrastructure (via building footprints) in low-connectivity environments.
 
 ## Architecture
-- **Backend**: FastAPI (Python) with database
+- **Backend**: FastAPI (Python) with sqlite database
 - **Frontend**: Jinja2 templates + Tailwind CSS + Vanilla JavaScript  
 - **Authentication**: JWT-based with role-based access control
 - **Image Processing**: Automatic compression and WebP conversion
@@ -24,50 +24,68 @@ Objective: A highly user-friendly, open-source tool for communities to submit ph
 - Non-Monetary Incentives: Features to encourage engagement without promoting bad actors or duplicate submissions.
 
 ## Project Structure
-
 ```
-Crisis Watch
-
+crisis_watch/
+├── app/
+│   ├── main.py
+│   ├── core/
+│   │   ├── config.py
+│   │   ├── security.py
+│   │   ├── auth.py
+│   │   ├── i18n.py
+│   │   ├── storage.py
+│   │   └── accessibility.py
+│   ├── db/
+│   │   ├── base.py
+│   │   ├── session.py
+│   │   └── init_db.py
+│   ├── models/
+│   │   ├── user.py
+│   │   ├── report.py
+│   │   ├── transaction.py
+│   │   ├── reward.py
+│   │   └── achievement.py
+│   ├── services/
+│   │   ├── auth_service.py
+│   │   ├── report_service.py
+│   │   ├── reward_service.py
+│   │   ├── analytics_service.py
+│   │   ├── duplicate_service.py
+│   │   ├── export_service.py
+│   │   ├── predictive_service.py
+│   │   ├── image_duplicate_service.py
+│   │   ├── gis_service.py
+│   │   ├── fulfillment_service.py
+│   │   └── ai_classification.py
+│   ├── api/routes/
+│   │   ├── public.py
+│   │   ├── auth.py
+│   │   ├── reports.py
+│   │   ├── dashboard.py
+│   │   ├── export.py
+│   │   └── rewards.py
+│   ├── templates/
+│   │   ├── base.html
+│   │   ├── home.html
+│   │   ├── login.html
+│   │   ├── register.html
+│   │   ├── submit.html
+│   │   ├── map.html
+│   │   ├── dashboard/admin.html
+│   │   ├── dashboard/analytics.html
+│   │   └── components/navbar.html
+│   ├── static/
+│   │   ├── js/app.js
+│   │   ├── js/indexeddb.js
+│   │   ├── sw.js
+│   │   └── css/tailwind.css
+├── locale/
+├── requirements.txt
+├── babel.cfg
+└── vercel.json
 ```
 
 
 
-## Setup
-
-### 1. Install Dependencies
-```bash
-cd backend
-python3 -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-### 2. Setup Database
-```bash
-# Install PostgreSQL first, then:
-createdb crisis_watch
-```
-
-### 3. Configure Environment
-```bash
-cp .env.example .env
-# Edit .env with your database URL and secret keys
-```
-
-### 4. Initialize Database
-```bash
-python init_db.py
-# This creates tables and a default admin user:
-# Username: admin
-# Password: admin123
-# Change this password immediately!
-```
-
-### 5. Run Server
-```bash
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
-```
-
-Visit http://localhost:8000
 
 
