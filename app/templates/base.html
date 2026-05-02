@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-font="medium">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<link href="/static/css/tailwind.css" rel="stylesheet">
+</head>
+<body>
+
+<header class="flex justify-between p-4 border-b">
+<img src="https://www.atachcommunity.com/fileadmin/_processed_/a/e/csm_undp_logo_landscape_854813103b.png" class="h-10">
+
+<div>
+<select onchange="setFont(this.value)">
+<option value="small">A-</option>
+<option value="medium">A</option>
+<option value="large">A+</option>
+</select>
+
+<button onclick="toggleTheme()">🌓</button>
+</div>
+</header>
+
+<main class="p-4">
+{% block content %}{% endblock %}
+</main>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>
