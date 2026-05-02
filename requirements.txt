@@ -1,29 +1,33 @@
-fastapi>=0.115.0
-uvicorn==0.31.0
+fastapi>=0.111.0
+uvicorn==0.30.0
 jinja2==3.1.4
-python-multipart==0.0.12
-
 # Database & Async (Vercel-Safe)
 psycopg2-binary==2.9.9
-sqlalchemy==2.0.35
+sqlalchemy==2.0.30
 databases[postgresql]==0.9.0
-
 # Geospatial
-shapely==2.0.6
 pyproj==3.6.1
 geojson==3.1.0
-
+geoalchemy2==0.14.6
+shapely>=2.0.4
 # Utilities
-pydantic==2.10.3
+pydantic>=2.7.1
 pydantic[email]==2.9.2
 pydantic-settings==2.6.1
 python-dotenv==1.0.1
 alembic==1.14.0
-python-multipart==0.0.12
+python-multipart>=0.0.9
+python-jose==3.3.0
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
-pillow==11.0.0
+Pillow>=10.3.0 #pillow==11.0.0
 aiofiles==24.1.0
 pytest==8.3.4
 pytest-asyncio==0.24.0
 httpx==0.28.1
+babel==2.15.0
+boto3==1.34.0
+authlib==1.3.0
+geopandas==0.14.4
+imagehash==4.3.1
+numpy==1.26.4
